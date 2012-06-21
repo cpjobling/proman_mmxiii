@@ -48,4 +48,4 @@ gem "launchy", ">= 2.1.0", :group => :test
 gem "bson_ext", ">= 1.6.2"
 gem "mongoid", ">= 2.4.10"
 gem "devise", ">= 2.1.0"
-
+gem "rvm-capistrano"
