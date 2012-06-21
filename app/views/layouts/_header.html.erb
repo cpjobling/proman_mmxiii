@@ -1,0 +1,13 @@
+<header id="page_header" role="banner">
+  <nav id="utility">
+    <p>
+      <%= render 'shared/navigation' %>
+    </p>
+  </nav>
+  <%= link_to(
+          image_tag("logo.png", 
+                    alt: "Proman 2013",
+                    id: "logo"),
+          root_url,
+          title: "Dashboard") %>
+</header>
