@@ -1,12 +1,12 @@
 <% if user_signed_in? %>
-   You are logged in as <strong>user.email</strong>
+   You are logged in as <strong><%= current_user.email %></strong>
   <%= link_to('Logout', destroy_user_session_path, :method=>'delete') %> |
 <% else %>
   <%= link_to('Login', new_user_session_path)  %> | 
 <% end %>
 <% if user_signed_in? %>
   <%= link_to "[Your Account]", "#" %> | 
-  <%= link_to('Edit account', edit_user_registration_path) %> |
+  <%= link_to('Edit account', edit_user_registration_path) %>
 <% else %>
   <%= link_to('Sign up', new_user_registration_path)  %>
 <% end %>

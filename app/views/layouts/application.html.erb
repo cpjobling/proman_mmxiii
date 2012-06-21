@@ -9,12 +9,17 @@
 </head>
 <body>
   <%= render 'layouts/header' %>
+  <%= image_tag("tagline.png",
+        alt: "Undergraduate Project Allocation Evolved",
+        id: "tagline" ) %>
+  <div class="container">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+    <% end %>
 
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-  <% end %>
-
-<%= yield %>
+    <%= yield %>
+  </div>
+  <%= render 'layouts/footer' %>
 
 </body>
 </html>
