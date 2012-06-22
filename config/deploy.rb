@@ -1,6 +1,6 @@
 set :rvm_ruby_string, 'ruby-1.9.3-p194@proman_2013'
 require "rvm/capistrano"
-require "bundler/capsitrano"
+require "bundler/capistrano"
 
 set :application, "Proman 2013"
 set :repository,  "https://github.com/cpjobling/proman_mmxxiii.git"
