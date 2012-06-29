@@ -6,7 +6,7 @@ class Course
   field :title, :type => String
   field :university_course_title, :type => String
   field :degree, :type => String
-  field :program_code, :type => String
+  belongs_to :degree_scheme
   
   validates_uniqueness_of :route_code, :case_sensitive => false
   index :route_code
