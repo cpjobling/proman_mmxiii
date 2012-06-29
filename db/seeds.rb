@@ -7,8 +7,14 @@ user = User.create! :student_or_staff_number => 123456, :email => 'user@example.
 user.confirm!
 puts 'New user created: ' << user.email
 
-puts 'create routes collection'
+puts 'CREATE ROUTES COLLECTION'
 CSV.foreach('data/routes.csv',:headers => true) do |row|
   route = Route.create! :route_code => row['SCE_ROUC'], :route_name => row['ROU_NAME']
   puts "Route '" << route.route_name << " (" << route.route_code << ")' created"
+end
+
+puts 'CREATE DEGREE SCHEMES COLLECTION'
+CSV.foreach('data/degree_schemes.csv',:headers => true) do |row|
+  ds = DegreeScheme.create! :program_code => row['SCE_PRGC'], :course_title => row['CRS_TITL']
+  puts "Degree scheme '" << ds.course_title << " [" << ds.program_code << "]' created"
 end
