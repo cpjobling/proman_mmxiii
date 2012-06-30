@@ -22,7 +22,6 @@ CSV.foreach('data/routes.csv',:headers => true) do |row|
     :title => row['TITLE'], 
     :university_course_title => row['UWS_CRS_TITLE'])
   course.degree_scheme = DegreeScheme.first(conditions: { program_code: row['SCE_PRGC']})
-  puts course.degree_scheme
   course.save!
   puts "Course '" << course.route_name << " (" << course.route_code << ")' created"
 end
