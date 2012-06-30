@@ -7,34 +7,46 @@ describe Course do
     @course = FactoryGirl.create(:course)    
   end
   
-  it "should have a route code" do
+  it "has a route code" do
     @course.route_code.should == 'XMECS'
   end
   
-  it "should have a route name" do
+  it "has a route name" do
     @course.route_name.should == 'Mechanical Engineering Single'    
   end
   
-  it "should have a title" do
+  it "has a title" do
     @course.title.should == 'Mechanical Engineering'
   end
   
-  it "should have a university course title" do
+  it "has a university course title" do
     @course.university_course_title.should == 'Mechanical Engineering 3yr FULL TIME'    
   end
 
-  it "should have a degree field" do
+  it "has a degree field" do
     @course.degree.should == 'BEng'    
   end
 
-  it "should validate uniqueness of route code" do
+  it "is not valid without a unique route code" do
     course = FactoryGirl.build(:course, route_code: @course.route_code)
     course.should_not be_valid
     course.errors_on(:route_code).should include "is already taken"
     other_course = FactoryGirl.build(:course, route_code: '4CEHS').should be_valid
   end
   
-  it "should belong to a degree sceheme" do
+  it "is not valid without a degree field" do
+    @course.degree = nil
+    @course.should_not be_valid
+    @course.errors_on(:degree).should include "can't be blank"
+  end
+  
+  it "is not valid without a title" do
+    @course.title = nil
+    @course.should_not be_valid
+    @course.errors_on(:title).should include "can't be blank"
+  end
+  
+  it "belongs to a degree sceheme" do
     @course.degree_scheme = @degree_scheme
     @course.save!
     @course.reload

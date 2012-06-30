@@ -9,5 +9,6 @@ class Course
   belongs_to :degree_scheme
   
   validates_uniqueness_of :route_code, :case_sensitive => false
+  validates_presence_of :degree, :title
   index :route_code
 end
