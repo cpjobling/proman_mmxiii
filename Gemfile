@@ -36,16 +36,42 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
-# From rails-devise-mongoid tutorial
-gem "rspec-rails", ">= 2.10.1", :group => [:development, :test]
-gem "database_cleaner", ">= 0.7.2", :group => :test
-gem "mongoid-rspec", ">= 1.4.4", :group => :test
-gem "factory_girl_rails", ">= 3.3.0", :group => [:development, :test]
-gem "email_spec", ">= 1.2.1", :group => :test
-gem "cucumber-rails", ">= 1.3.0", :group => :test, :require => false
-gem "capybara", ">= 1.1.2", :group => :test
-gem "launchy", ">= 2.1.0", :group => :test
 gem "bson_ext", ">= 1.6.2"
 gem "mongoid", ">= 2.4.10"
 gem "devise", ">= 2.1.0"
+
+group :development, :test do
+  gem 'rspec-rails', ">= 2.10.1"
+  gem 'guard-rspec', '0.5.5'
+  gem "factory_girl_rails", ">= 3.3.0"
+end
+
+# Test gems on Macintosh OS X
+group :test do
+  gem "cucumber-rails", ">= 1.3.0", :require => false
+  gem 'capybara', '1.1.2'
+  gem 'rb-fsevent', '0.4.3.1', :require => false
+  gem 'growl', '1.0.3'
+  gem "launchy", ">= 2.1.0"
+  gem "database_cleaner", ">= 0.7.2"
+  gem "mongoid-rspec", ">= 1.4.4"
+  gem "email_spec", ">= 1.2.1"
+  gem 'guard-spork', '0.3.2'
+  gem 'spork', '0.9.0'
+end
+
+# Test gems on Linux
+# group :test do
+  # gem 'capybara', '1.1.2'
+  # gem 'rb-inotify', '0.8.8'
+  # gem 'libnotify', '0.5.9'
+# end
+
+# Test gems on Windows
+# group :test do
+  # gem 'capybara', '1.1.2'
+  # gem 'rb-fchange', '0.0.5'
+  # gem 'rb-notifu', '0.0.4'
+  # gem 'win32console', '1.3.0'
+# end
 

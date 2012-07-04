@@ -74,3 +74,4 @@ db/*.sqlite3
 # vim artifacts
 **.swp
 
+bundler_stubs/
