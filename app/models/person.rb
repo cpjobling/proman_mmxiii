@@ -7,11 +7,18 @@ class Person
   field :forename3,      :type => String, :default => ''
   field :preferred_name, :type => String, :default => ''
   field :surname,        :type => String
+  field :date_of_birth,  :type => String # format dd/mm/yyyy
   
   validates_presence_of :title, :forename1, :surname
+  validates_format_of :date_of_birth, with: /\A\d{2}\/\d{2}\/\d{4}\z/, 
+                      allow_blank: true, message: "should match dd/mm/yyyy"
   
   def name
-    preferred_name || forename1
+    if preferred_name.blank? 
+      forename1
+    else
+      preferred_name
+    end
   end
   
   def full_name

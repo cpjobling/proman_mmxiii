@@ -3,13 +3,15 @@ require 'spec_helper'
 describe User do
   
   before(:each) do
-    @attr = { 
-      :student_or_staff_number => 123456,
-      # :name => "Example User",
-      :email => "user@example.com",
-      :password => "foobar",
-      :password_confirmation => "foobar"
-    }
+    @user = User.new(
+      @attr = { 
+        :student_or_staff_number => 123456,
+        # :name => "Example User",
+        :email => "user@example.com",
+        :password => "foobar",
+        :password_confirmation => "foobar"
+      }
+    )
   end
   
   it "should create a new instance given a valid attribute" do
@@ -98,6 +100,17 @@ describe User do
     it "should set the encrypted password attribute" do
       @user.encrypted_password.should_not be_blank
     end
+
+  end
+
+  describe "Normal user operations" do
+    subject { @user }
+
+    it { should respond_to(:student_or_staff_number)}
+    it { should respond_to(:email)}
+    it { should respond_to(:password)}
+    it { should respond_to(:password_confirmation)}
+    it { should respond_to(:remember_me)}
 
   end
 
