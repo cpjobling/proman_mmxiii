@@ -1,8 +1,8 @@
 class DegreeScheme
   include Mongoid::Document
   
-  field :program_code, :type => String
-  field :course_title, :type => String, :unique => true
+  field :program_code, :type => String, :unique => true
+  field :course_title, :type => String
   has_many :courses
   
   validates_uniqueness_of :program_code, :case_sensitive => false
