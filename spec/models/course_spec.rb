@@ -29,6 +29,6 @@ describe Course do
   its(:university_course_title) { should == 'Mechanical Engineering 3yr FULL TIME' }  
   its(:degree)                  { should == 'BEng' }   
 
-  it { should have_index_for(:route_code).with_options(:unique => true) } 
+  it { should have_index_for(:route_code).with_options(unique: true) } 
 
 end

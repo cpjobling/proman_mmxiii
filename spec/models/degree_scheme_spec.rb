@@ -24,5 +24,6 @@ describe DegreeScheme do
  
   # Associations
   it { should have_many(:courses) }
-  
+
+  it { should have_index_for(:program_code).with_options(unique: true) } 
 end
