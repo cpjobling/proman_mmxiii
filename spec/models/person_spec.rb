@@ -23,38 +23,14 @@ describe Person do
 
   it { should be_valid }
 
+  # Validations
 
-  describe "validations" do
-
-    context "when title is not present" do
-      before { charlie.title = " " }
-      it { should_not be_valid }
-    end
-  
-    context "when there is no first forename" do
-      before { charlie.forename1 = " " }
-      it { should_not be_valid }
-    end
- 
-    context "when there is no surname" do
-      before { charlie.surname = " " }
-      it { should_not be_valid }
-    end
-
-    context "when there is a date of birth" do
-      context "the date of birth is invalid" do
-        before { charlie.date_of_birth = "rubbish" }
-        it { should_not be_valid }
-        it "should give invalid error message" do
-          charlie.errors_on(:date_of_birth).should include("should match dd/mm/yyyy") 
-        end
-      end
-      context "the date of birth is valid" do
-        before { charlie.date_of_birth = '14/11/1948'}
-        it { should be_valid }
-      end
-    end
-  end
+  it { should validate_presence_of(:title) }
+  it { should validate_presence_of(:forename1) }
+  it { should validate_presence_of(:surname) }
+  it { should validate_format_of(:date_of_birth)
+          .to_allow("14/11/1948")
+          .not_to_allow("rubbish")}
 
   describe "forenames" do
     context "no forename" do
