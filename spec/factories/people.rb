@@ -1,5 +1,12 @@
 FactoryGirl.define do
   factory :person do
+    student_or_staff_number 123456
+    # name 'Test User'
+    email 'example@example.com'
+    password 'please'
+    password_confirmation 'please'
+    # required if the Devise Confirmable module is used
+    confirmed_at Time.now
     title 'Mr'
     forename1 'Charles'
     forename2 'Philip'
