@@ -8,5 +8,7 @@ class ResearchCentre
   validates_uniqueness_of :code, case_sensitive: false
   validates_uniqueness_of :title, case_sensitive: false
 
+  has_many :supervisors
+
   index :code, unique: true
 end

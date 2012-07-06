@@ -1,7 +1,6 @@
 class Student < Person
   include Mongoid::Document
 
-  field :discipline, type: String
   field :course, type: String
   field :grade, type: Float
   field :level_last_year, type: String
@@ -12,5 +11,7 @@ class Student < Person
 
   validates_presence_of :discipline, :course
   # TODO: make degree scheme an embedded object
+
+  belongs_to :discipline
 
 end

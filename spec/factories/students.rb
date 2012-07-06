@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :discipline do
+    name "Mechanical Engineering"
+  end
   factory :student do
     student_or_staff_number 123456
     # name 'Test User'
@@ -13,6 +16,6 @@ FactoryGirl.define do
     forename3 'Arthur George'
     surname 'Windsor'
     preferred_name 'Chuck'
-    discipline 'Mechanical Engineering'
+    discipline :discipline
   end
 end

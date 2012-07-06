@@ -1,7 +1,7 @@
 class Supervisor < Person
   include Mongoid::Document
 
-  field :research_centre, type: String
+  belongs_to :research_centre
 
   validates_presence_of :research_centre
 end

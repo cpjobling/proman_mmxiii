@@ -16,4 +16,6 @@ describe Student do
 
   it { should validate_presence_of(:discipline) }
   it { should validate_presence_of(:course) }
+
+  it { should belong_to(:discipline) }
 end

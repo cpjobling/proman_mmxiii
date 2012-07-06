@@ -11,4 +11,6 @@ describe ResearchCentre do
   it { should validate_uniqueness_of(:title).case_insensitive }
 
   it { should have_index_for(:code).with_options(unique: true) }
+
+  it { should have_many(:supervisors) }
 end
