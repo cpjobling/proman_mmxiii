@@ -15,14 +15,27 @@ end
 
 puts 'CREATE ROUTES COLLECTION'
 CSV.foreach('data/routes.csv',:headers => true) do |row|
-  course = Course.create!( 
-    :route_code => row['SCE_ROUC'], 
-    :route_name => row['ROU_NAME'], 
-    :degree => row['DEGREE'], 
-    :title => row['TITLE'], 
+  course = Course.create!(
+    :route_code => row['SCE_ROUC'],
+    :route_name => row['ROU_NAME'],
+    :degree => row['DEGREE'],
+    :title => row['TITLE'],
     :university_course_title => row['UWS_CRS_TITLE'])
   course.degree_scheme = DegreeScheme.first(conditions: { program_code: row['SCE_PRGC']})
   course.save!
   puts "Course '" << course.route_name << " (" << course.route_code << ")' created"
+end
+
+puts 'CREATE RESEARCH CENTRES'
+research_centres = {
+  'MNC' =>  'Multidisciplinary Naonotechnology Centre',
+  'C2EC' => 'Civil and Computational Engineering Centre',
+  'MRC' =>  'Materials Research Centre',
+  'SES' =>  'Sport and Exercise Science'
+}
+
+research_centres.each do |code, title|
+  rc = ResearchCentre.create!(code: code, title: title)
+  puts "Research Centre '#{rc.code}: #{rc.title}' created"
 end
 
