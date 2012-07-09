@@ -2,7 +2,6 @@
 
 FactoryGirl.define do
   factory :user do
-    student_or_staff_number 123456
     # name 'Test User'
     email 'example@example.com'
     password 'please'

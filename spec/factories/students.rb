@@ -3,8 +3,6 @@ FactoryGirl.define do
     name "Mechanical Engineering"
   end
   factory :student do
-    student_or_staff_number 123456
-    # name 'Test User'
     email 'example@example.com'
     password 'please'
     password_confirmation 'please'
@@ -16,6 +14,7 @@ FactoryGirl.define do
     forename3 'Arthur George'
     surname 'Windsor'
     preferred_name 'Chuck'
+    student_number 123456
     discipline :discipline
   end
 end

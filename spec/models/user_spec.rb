@@ -5,7 +5,6 @@ describe User do
   before(:each) do
     @user = User.new(
       @attr = {
-        :student_or_staff_number => 123456,
         # :name => "Example User",
         :email => "user@example.com",
         :password => "foobar",
@@ -113,12 +112,10 @@ describe User do
   describe "Normal user operations" do
     subject { @user }
 
-    it { should respond_to(:student_or_staff_number)}
     it { should respond_to(:email)}
     it { should respond_to(:password)}
     it { should respond_to(:password_confirmation)}
     it { should respond_to(:remember_me)}
-    it { should have_index_for(:student_or_staff_number).with_options(unique: true) }
     it { should have_index_for(:email).with_options(unique: true) }
   end
 

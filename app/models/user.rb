@@ -9,15 +9,12 @@ class User
   ## Database authenticatable
   field :email,              :type => String, :default => ""
   field :encrypted_password, :type => String, :default => ""
-  field :student_or_staff_number, :type => Integer
 
   validates_presence_of :email
   validates_presence_of :encrypted_password
-  validates_presence_of :student_or_staff_number
-  validates_numericality_of :student_or_staff_number, :only_integer => true, :message => "Enter the 6 digit number that you'll find on your staff or student card, ommitting any leading zeros."
 
-  validates_uniqueness_of :student_or_staff_number, :email, :case_sensitive => false
-  attr_accessible :student_or_staff_number, :email, :password, :password_confirmation, :remember_me
+  validates_uniqueness_of :email, :case_sensitive => false
+  attr_accessible :email, :password, :password_confirmation, :remember_me
 
   ## Recoverable
   field :reset_password_token,   :type => String
@@ -47,6 +44,5 @@ class User
   ## Token authenticatable
   # field :authentication_token, :type => String
 
-  index :student_or_staff_number, unique: true
   index :email, unique: true
 end

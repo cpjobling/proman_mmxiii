@@ -6,4 +6,3 @@ Feature: Show Users
     Scenario: Viewing users
       Given I exist as a user
       When I look at the list of users
-      Then I should see my student or staff number

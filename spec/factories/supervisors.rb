@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :supervisor do
-    student_or_staff_number 123456
+    staff_number 123456
+    bbusername 'engchuck'
     # name 'Test User'
     email 'example@example.com'
     password 'please'
