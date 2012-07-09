@@ -12,6 +12,8 @@ class Person < User
   validates_presence_of :title, :forename1, :surname
   validates_format_of :date_of_birth, with: /\A\d{2}\/\d{2}\/\d{4}\z/,
                       allow_blank: true, message: "should match dd/mm/yyyy"
+  attr_accessible :title, :forename1, :forename2, :forename3,
+        :preferred_name, :surname, :date_of_birth
 
   def name
     if preferred_name.blank?

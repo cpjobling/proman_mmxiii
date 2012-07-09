@@ -11,8 +11,6 @@ describe Supervisor do
 
   it { should respond_to(:research_centre) }
 
-  it { should validate_presence_of(:research_centre) }
-
   it { should validate_presence_of(:staff_number) }
 
   it { should validate_presence_of(:bbusername) }

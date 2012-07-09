@@ -8,7 +8,7 @@ class Supervisor < Person
 
   belongs_to :research_centre
 
-  validates_presence_of :research_centre, :staff_number, :bbusername
+  validates_presence_of :staff_number, :bbusername
   validates_uniqueness_of :staff_number
   validates_uniqueness_of :bbusername, case_sensitive: false
 

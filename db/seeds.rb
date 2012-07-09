@@ -39,3 +39,26 @@ research_centres.each do |code, title|
   puts "Research Centre '#{rc.code}: #{rc.title}' created"
 end
 
+
+puts 'ADD STAFF'
+CSV.foreach(ENV['STAFF'],:headers => true) do |row|
+  the_rc = ResearchCentre.first(conditions: { code: row['centre']})
+  supervisor = Supervisor.create!(
+      :title => row['title'],
+      :forename1 => row['first_name'],
+      :forename2 => row['initials'],
+      :surname => row['last_name'],
+      :preferred_name => row['preferred_name'],
+      :password => "%07d" % row['staff_number'],
+      :password_confirmation => "%07d" % row['staff_number'],
+      :staff_number => row['staff_number'],
+      :bbusername => row['bbusername'],
+      :email => row['email']
+    )
+  supervisor.confirmed_at = Time.now
+  supervisor.research_centre = the_rc
+  supervisor.save!
+  supervisor.reload
+  puts "Supervisor '#{supervisor.full_name} (SN #{supervisor.staff_number} - BB #{supervisor.bbusername})' added to #{supervisor.research_centre.code}"
+end
+
