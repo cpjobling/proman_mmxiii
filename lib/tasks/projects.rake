@@ -26,7 +26,7 @@ namespace :admin do
           project = Project.new(
             title: row['Title'], 
             description: row['Description'],
-            special_requirements: row['Description'],
+            special_requirements: row['Special Requirements'],
             cross_disciplinary_theme: row['Cross disciplinary themes']
           )
           
