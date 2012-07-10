@@ -38,7 +38,9 @@ gem 'jquery-rails'
 
 gem "bson_ext", ">= 1.6.2"
 gem "mongoid", ">= 2.4.10"
+gem "mongoid_auto_increment", ">= 0.0.8"
 gem "devise", ">= 2.1.0"
+gem "rake", ">= 0.9.2.2"
 
 group :development, :test do
   gem 'rspec-rails', ">= 2.10.1"

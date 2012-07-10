@@ -17,6 +17,8 @@ describe Supervisor do
 
   it { should belong_to(:research_centre) }
 
+  it { should have_many(:projects)}
+
   it { should validate_uniqueness_of(:bbusername) }
 
   it { should validate_uniqueness_of(:staff_number) }

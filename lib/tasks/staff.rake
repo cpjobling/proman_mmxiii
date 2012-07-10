@@ -1,6 +1,13 @@
 
 require 'csv'
 
+# We normalise emails by making them lower case. Also as our email domain 
+# may be abbreviated by staff and students as `swan.ac.uk` for consistency
+# I've decided it should be `swansea.ac.uk`. This method should 
+# probably also check that the email is from the correct domain in the first place.
+def normalize_email_address email_address
+  email_address.downcase.sub(/swan\.ac\.uk/,'swansea.ac.uk')
+end
 
 namespace :admin do
   namespace :staff do
@@ -22,7 +29,7 @@ namespace :admin do
             :password_confirmation => "%07d" % row['staff_number'],
             :staff_number => row['staff_number'],
             :bbusername => row['bbusername'],
-            :email => row['email']
+            :email => normalize_email_address(row['email'])
           )
           count += 1
           supervisor.confirmed_at = Time.now

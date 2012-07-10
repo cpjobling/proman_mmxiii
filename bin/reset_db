@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Reset databases. Use carefully
+
+STAFF=$HOME/Dropbox/projects/2012-2013/data/csv/staff.csv
+PROJECTS=$HOME/Dropbox/projects/2012-2013/data/csv/collected-projects-201209071620.csv
+
+rake db:seed \
+  admin:staff:add_from_csv\[$STAFF\] \
+  admin:projects:add_from_csv\[$PROJECTS\]
+

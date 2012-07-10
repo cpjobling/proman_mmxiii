@@ -7,6 +7,7 @@ class Supervisor < Person
   attr_accessible :staff_number, :bbusername
 
   belongs_to :research_centre
+  has_many :projects
 
   validates_presence_of :staff_number, :bbusername
   validates_uniqueness_of :staff_number
