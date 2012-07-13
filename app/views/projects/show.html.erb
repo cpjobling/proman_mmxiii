@@ -1,2 +1,37 @@
-<h1>ProjectsController#show</h1>
-<p>Find me in app/views/projects_controller/show.html.erb</p>
+<article id="<%= @project.code %>">
+  <header>
+    <h1><%= raw "#{@project.code} &ndash; #{@project.title}" %></h1>
+    <p>
+    <strong>Set by</strong>
+    <%= @project.supervisor_name %>
+    ( <!-- TODO: make this a link to the profile page -->
+      <a href="mailto:<%= @project.supervisor_email %>">
+        <%= @project.supervisor_email %>
+      </a>
+    ),
+    <%= @project.research_centre_name %>
+    (
+    <%= @project.research_centre_code %>
+    ).
+    </p>
+  </header>
+  <section class='p_description'>
+    <p>
+      <strong>Status</strong>: <%= @project.status %>
+    </p>
+    <h3>
+    Description
+    </h3>
+    <section class='project_desciption'>
+    <p>When the wind blows, a floating object will experience a drag force in the direction of the wind. As the object is induced to drift through the water it will experience a hydrodynamic drag force in the opposite direction. Equilibrium results when the wind-induced aerodynamic drag force is balanced by the hydrodynamic drag force. This occurs at the drift velocity. The ratio of the drift velocity to the wind velocity will depend upon the proportion of the object above and below the waterline.</p>
+      
+      <p>This project will deal specifically with the induced drift velocity for a floating human body. The work is required for forensic analysis in a criminal investigation. In the first stage, the project will take an experimental approach using the wind tunnel and the water tank available in the School and aim to provide a quick but rough estimation of the drift velocity. In the second stage, a computer simulation approach will be taken (using ANSYS CFX, a commercial computational fluid dynamics package) to confirm the experimental result and obtain more detailed prediction.</p>
+      
+      <p>The project student is expected to have good knowledge in fluid mechanics, strong ability in experimental investigation, and an interest and open mind of computer simulation.</p>
+  </section>
+  <footer>
+    <a href='#toc'>
+      List of projects
+    </a>
+  </footer>
+</article>

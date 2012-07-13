@@ -15,4 +15,12 @@ class Supervisor < Person
 
   index :staff_number, unique: true
   index :bbusername, unique: true
+
+  def research_centre_name
+    research_centre.name
+  end
+
+  def research_centre_code
+    research_centre.code
+  end
 end

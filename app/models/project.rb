@@ -38,6 +38,14 @@ class Project
     return supervisor.research_centre
   end
 
+  def research_centre_name
+    supervisor.research_centre_name
+  end
+
+  def research_centre_code
+    supervisor.research_centre_code
+  end
+
   def code
     return "#{PREFIX}#{'%03d' % pid}"
   end
@@ -48,5 +56,13 @@ class Project
     else
       return "Not available"
     end
+  end
+
+  def supervisor_email
+    supervisor.email
+  end
+
+  def supervisor_name
+    supervisor.full_name
   end
 end

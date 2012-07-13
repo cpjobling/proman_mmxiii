@@ -34,9 +34,9 @@ research_centres = {
   'SES' =>  'Sport and Exercise Science'
 }
 
-research_centres.each do |code, title|
-  rc = ResearchCentre.create!(code: code, title: title)
-  puts "Research Centre '#{rc.code}: #{rc.title}' created"
+research_centres.each do |code, name|
+  rc = ResearchCentre.create!(code: code, name: name)
+  puts "Research Centre '#{rc.code}: #{rc.name}' created"
 end
 
 puts 'CREATE DISCIPLINE LISTS'
