@@ -1,4 +1,10 @@
 PromanMmxxiii::Application.routes.draw do
+  get "projects_controller/index"
+
+  get "projects_controller/show"
+
+  get "projects_controller/by_discipline"
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -9,6 +15,12 @@ PromanMmxxiii::Application.routes.draw do
 
   devise_for :users
   resources :users, :only => :show
+
+  resources :projects do
+    collection do
+      get 'by_discipline/:discipline', action: 'by_discipline'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

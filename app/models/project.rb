@@ -18,7 +18,7 @@ class Project
 
   attr_accessible :code, :title, :description, :associated_with, 
         :cross_disciplinary_theme, :special_requirements,
-        :student_number, :student_name
+        :student_number, :student_name, :available
 
   validates_presence_of :title, :description, :discipline, :supervisor
 
@@ -40,5 +40,10 @@ class Project
 
   def code
     return "#{PREFIX}#{'%03d' % pid}"
+  end
+
+  def status
+    return "Available" if available?
+    return "Not available" if not available?
   end
 end

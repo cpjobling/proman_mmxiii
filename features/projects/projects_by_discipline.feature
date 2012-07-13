@@ -1,11 +1,12 @@
-Feature: Projects by discipline
-  In order to show projects available for a given discipline
-  As a student
-  I should be able to view projects for my discipline
+Feature: Projects
+  In order to show projects available
+  As a visitor
+  I should be able to view projects
 
-    Scenario: view projects by discipline
+    Scenario: list projects
       Given I am not logged in
-      When I visit the page of projects for a discipline
-      Then I should see only projects in the discipline
-        And I should not see projects in another discipline
+      When I visit the projects page
+      Then I should see "Projects" in the page title
+      And I should a list of available projects
+        And I should not see projects that are not available
 

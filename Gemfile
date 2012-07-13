@@ -46,6 +46,7 @@ gem "rake", ">= 0.9.2.2"
 group :development, :test do
   gem 'rspec-rails', ">= 2.10.1"
   gem 'guard-rspec', '0.5.5'
+  gem 'guard-cucumber'
   gem "factory_girl_rails", ">= 3.3.0"
 end
 
@@ -61,6 +62,7 @@ group :test do
   gem "email_spec", ">= 1.2.1"
   gem 'guard-spork', '0.3.2'
   gem 'spork', '0.9.0'
+  gem 'forgery'
 end
 
 # Test gems on Linux

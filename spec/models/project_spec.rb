@@ -14,6 +14,7 @@ describe Project do
   it { should respond_to(:available?)}
   it { should respond_to(:special_requirements)}
   it { should respond_to(:research_centre)}
+  it { should respond_to(:status)}
 
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:description) }
