@@ -42,6 +42,7 @@ gem "mongoid_auto_increment", ">= 0.0.8"
 gem 'activeadmin-mongoid'
 gem "devise", ">= 2.1.0"
 gem "rake", ">= 0.9.2.2"
+gem "RedCloth"
 
 group :development, :test do
   gem 'rspec-rails', ">= 2.10.1"
