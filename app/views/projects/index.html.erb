@@ -1,0 +1,24 @@
+<h1>Projects</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Title</th>
+      <th>For Discipline</th>
+      <th>Supervisor</th>
+      <th>Status</th>
+    <tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |project| %>
+    <tr>
+      <td><%= link_to project.code, project %></td>
+      <td><%= link_to project.title, project %></td>
+      <td><%= project.discipline.name %></td>
+      <td><%= project.supervisor.full_name %></td>
+      <td><%= project.available? %></td>
+    <tr>
+    <% end %>
+  </tbody>
+</table>

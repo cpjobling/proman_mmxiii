@@ -1,0 +1,3 @@
+When /^I visit the page of projects for discipline$/ do
+  pending # express the regexp above with the code you wish you had
+end
