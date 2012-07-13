@@ -1,8 +1,9 @@
 FactoryGirl.define do
   sequence(:email) { |n| "example#{n}@example.com" }
   sequence(:bbusername) { |n| "engchuck#{n}" }
+  sequence(:staff_number) { |n| 100000 + n }
   factory :supervisor do
-    staff_number { Forgery(:basic).number }
+    staff_number { generate(:staff_number) }
     bbusername { generate(:bbusername) }
     # name 'Test User'
     email { generate(:email) }
@@ -16,6 +17,7 @@ FactoryGirl.define do
     forename3 'Arthur George'
     surname 'Windsor'
     preferred_name 'Chuck'
-    research_centre rc
+    research_centre
   end
 end
+    
