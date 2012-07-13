@@ -9,7 +9,7 @@ class Project
   field :associated_with, type: Array
   field :cross_disciplinary_theme, type: String
   field :special_requirements, type: String
-  field :available, type: String, default: true
+  field :available, type: Boolean, default: true
   field :students_own_project, type: Boolean, default: false
   field :student_number, type: Integer
   field :student_name, type: String
@@ -43,7 +43,10 @@ class Project
   end
 
   def status
-    return "Available" if available?
-    return "Not available" if not available?
+    if available? 
+      return "Available"
+    else
+      return "Not available"
+    end
   end
 end

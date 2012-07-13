@@ -1,5 +1,3 @@
-rc = ResearchCentre.create!(code: 'C2EC', title: 'Civil and Computational Engineering')
-
 FactoryGirl.define do
   sequence(:email) { |n| "example#{n}@example.com" }
   sequence(:bbusername) { |n| "engchuck#{n}" }

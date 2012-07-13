@@ -1,10 +1,23 @@
-def create_two_users
-  @project1 = FactoryGirl.create(:project, title: 'First demo project')
-  @project1 = FactoryGirl.create(:project, title: 'Second demo project', available: false)
+def create_supervisor
+  @supervsr ||= Supervisor.create!(
+    password: "please",
+    confirm_password: "please",
+    staff_number: 123457,
+    bbusername: "bbuname",
+    email: "super@swanseaa.ac.uk",
+    title: "Prof",
+    forename1: "Albert",
+    surname: "Einstein",
+    confirmed_at: Time.now
+  )
+end
+def create_two_projects
+  @project1 = FactoryGirl.create(:project, title: 'First demo project', supervisor: create_supervisor)
+  @project1 = FactoryGirl.create(:project, title: 'Second demo project', supervisor: create_supervisor, available: false)
 end
 
 When /^I visit the projects page$/ do
-  create_two_users
+  create_two_projects
   visit '/projects'
 end
 
