@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <% @projects.each do |project| %>
-    <tr class="<%= cycle("even", "odd") %>">
+    <tr id="<%= project.code %>" class="<%= cycle("even", "odd") %>">
       <td><%= link_to project.code, project %></td>
       <td><%= link_to project.title, project %></td>
       <td><%= project.discipline.name %></td>

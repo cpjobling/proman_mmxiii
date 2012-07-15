@@ -9,6 +9,7 @@ Feature: Projects
       Then I should see "Projects" in the page content
       And I should see a list of available projects
         And I should also see projects that are not available
+        And I should see all project codes as ids
 
     Scenario: show a particular project
       Given I am not logged in
@@ -18,6 +19,8 @@ Feature: Projects
         And I should see the supervisors details
         And I should see the project description
         And I should see the other public project details
+        And I should see a link back to projects page for this project
         And I should not see any priveleged project details
+
 
 

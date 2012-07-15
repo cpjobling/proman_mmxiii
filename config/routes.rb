@@ -1,19 +1,12 @@
 PromanMmxxiii::Application.routes.draw do
-  get "projects_controller/index"
-
-  get "projects_controller/show"
-
-  get "projects_controller/by_discipline"
 
   ActiveAdmin.routes(self)
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
-
-  get "users/show"
-
   root :to => "home#index"
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users
+
   resources :users, :only => :show
 
   resources :projects do
