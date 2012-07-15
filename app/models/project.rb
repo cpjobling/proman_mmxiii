@@ -14,6 +14,8 @@ class Project
   field :student_number, type: Integer
   field :student_name, type: String
 
+  default_scope order_by(code: "asc")
+
   auto_increment :pid
 
   attr_accessible :code, :title, :description, :associated_with, 

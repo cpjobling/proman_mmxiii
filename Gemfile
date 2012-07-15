@@ -43,6 +43,7 @@ gem 'activeadmin-mongoid'
 gem "devise", ">= 2.1.0"
 gem "rake", ">= 0.9.2.2"
 gem "RedCloth"
+gem "kaminari"
 
 group :development, :test do
   gem 'rspec-rails', ">= 2.10.1"

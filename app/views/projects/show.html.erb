@@ -25,6 +25,10 @@
       <%= raw @project.description %>
     </section>
     <footer>
-      <%= link_to "Back to projects", projects_path + "##{@project.code}" %>
+      <% if session[:last_projects_page] %>
+        <%= link_to "Back to projects", session[:last_projects_page] + "##{@project.code}" %>
+      <% else %>
+        <%= link_to "Projects", projects_path %>
+      <% end %>
     </footer>
 </article>

@@ -14,7 +14,6 @@ end
 
 Then /^I should see "(.*?)" in the page content$/ do |title|
   page.should have_content "Projects"
-  save_and_open_page
 end
 
 Then /^I should see a list of available projects$/ do
@@ -64,6 +63,6 @@ Then /^I should see the project description$/ do
 end
 
 Then /^I should see a link back to projects page for this project$/ do
-  selector = 'a[href="' + projects_path + "##{@project1.code}" + '"]'
+  selector = 'a[href="' + projects_url + "##{@project1.code}" + '"]'
   page.should have_selector selector
 end

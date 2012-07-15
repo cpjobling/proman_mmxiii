@@ -10,6 +10,7 @@ PromanMmxxiii::Application.routes.draw do
   resources :users, :only => :show
 
   resources :projects do
+    get 'page/:page', :action => :index, :on => :collection
     collection do
       get 'by_discipline/:discipline', action: 'by_discipline'
     end
