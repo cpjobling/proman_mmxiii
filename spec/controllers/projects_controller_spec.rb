@@ -5,7 +5,8 @@ require 'spec_helper'
 describe ProjectsController do
 
   before(:each) do
-    @project = FactoryGirl.create(:project)   
+    discipline = Discipline.create!(code: "mech", name: "Mechanical Engineering")
+    @project = FactoryGirl.create(:project, discipline: discipline)   
   end
 
   describe "GET 'projects#index'" do
@@ -39,7 +40,7 @@ describe ProjectsController do
     end
   end
 
-  describe "GET 'project#by_discipline[:discipline]'" do
+  describe "GET 'projects#by_discipline[:discipline]'" do
     it "returns http success" do
       get :by_discipline, discipline: "mech"
       response.should be_success

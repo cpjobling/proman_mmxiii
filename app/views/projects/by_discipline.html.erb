@@ -1,2 +1,23 @@
-<h1>ProjectsController#by_discipline</h1>
-<p>Find me in app/views/projects_controller/by_discipline.html.erb</p>
+<h1>Projects for <%= @discipline.name %></h1>
+<%= paginate @projects %>
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Title</th>
+      <th>Supervisor</th>
+      <th>Status</th>
+    <tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |project| %>
+    <tr id="<%= project.code %>" class="<%= cycle("even", "odd") %>">
+      <td><%= link_to project.code, project %></td>
+      <td><%= link_to project.title, project %></td>
+      <td><%= project.supervisor.full_name %></td>
+      <td><%= project.status %></td>
+    <tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @projects %>

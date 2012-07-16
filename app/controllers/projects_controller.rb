@@ -9,5 +9,7 @@ class ProjectsController < ApplicationController
   end
 
   def by_discipline
+    @discipline = Discipline.first(conditions: { code: params[:discipline]})
+    @projects = @discipline.projects.all.page(params[:page]).per(10)
   end
 end
