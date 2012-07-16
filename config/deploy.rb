@@ -1,4 +1,7 @@
 require 'bundler/capistrano'
+require 'rvm/capistrano'
+set :rvm_ruby_string, '1.9.3@proman2012'
+
 
 set :application, "proman"
 set :scm, :git
@@ -32,4 +35,7 @@ namespace :deploy do
     run "cp #{shared_path}/config/mongoid.yml #{latest_release}/config/"
   end
 end
+before 'deploy:setup', 'rvm:install_rvm'
+before 'deploy:setup', 'rvm:install_ruby'
+
 before "deploy:assets:precompile", "deploy:copy_in_mongoid_yaml"
