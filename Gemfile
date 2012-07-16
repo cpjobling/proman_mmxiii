@@ -50,6 +50,7 @@ group :development, :test do
   gem 'guard-rspec', '0.5.5'
   gem 'guard-cucumber'
   gem "factory_girl_rails", ">= 3.3.0"
+  gem "capistrano", '~> 2.11.2'
 end
 
 # Test gems on Macintosh OS X

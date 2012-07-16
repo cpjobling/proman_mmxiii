@@ -1,32 +1,35 @@
-set :rvm_ruby_string, 'ruby-1.9.3-p194@proman_2013'
-require "rvm/capistrano"
-require "bundler/capsitrano"
+require 'bundler/capistrano'
 
-set :application, "Proman 2013"
-set :repository,  "https://github.com/cpjobling/proman_mmxxiii.git"
-
+set :application, "proman"
 set :scm, :git
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :repository,  "git://github.com/cpjobling/proman_mmxxiii"
 
-role :web, "proman.swan.ac.uk"                          # Your HTTP server, Apache/etc
-role :app, "proman.swan.ac.uk"                          # This may be the same as your `Web` server
-role :db,  "proman.swan.ac.uk", :primary => true # This is where Rails migrations will run
-#role :db,  "your slave db-server here"
+server "eng-hope.swan.ac.uk", :web, :app, :db, :primary => true
 
-# if you want to clean up old releases on each deploy uncomment this:
-after "deploy:restart", "deploy:cleanup"
+ssh_options[:keys] = "~/.ssh/public_key"
 
 set :user, "passenger"
-set :scm_username, "cpjobling"
+set :group, "passenger"
+set :deploy_to, "/var/www/sites/proman.swan.ac.uk"
+set :use_sudo, false
+
+set :deploy_via, :copy
+set :copy_strategy, :export
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
-  task :start do ; end
-  task :stop do ; end
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+   task :start do ; end
+   task :stop do ; end
+   desc "Restart the application"
+   task :restart, :roles => :app, :except => { :no_release => true } do
+     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+   end
+   desc "Copy the mongoid.yml file into the latest release"
+   task :copy_in_mongoid_yaml do
+    run "cp #{shared_path}/config/mongoid.yml #{latest_release}/config/"
   end
 end
+before "deploy:assets:precompile", "deploy:copy_in_mongoid_yaml"
