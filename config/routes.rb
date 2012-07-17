@@ -2,7 +2,7 @@ PromanMmxxiii::Application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  root :to => "home#index"
+  root :to => "projects#index"
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users

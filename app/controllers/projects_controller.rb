@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.all.page(params[:page]).per(10)
+    @projects = Project.all.page(params[:page]).per(20)
   end
 
   def show
@@ -10,6 +10,6 @@ class ProjectsController < ApplicationController
 
   def by_discipline
     @discipline = Discipline.first(conditions: { code: params[:discipline]})
-    @projects = @discipline.projects.all.page(params[:page]).per(10)
+    @projects = @discipline.projects.all.page(params[:page]).per(20)
   end
 end

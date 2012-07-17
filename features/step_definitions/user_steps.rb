@@ -69,8 +69,9 @@ end
 
 ### WHEN ###
 When /^I sign in with valid credentials$/ do
-  create_visitor
-  sign_in
+  pending
+  #create_visitor
+  #sign_in
 end
 
 When /^I sign out$/ do
@@ -78,32 +79,37 @@ When /^I sign out$/ do
 end
 
 When /^I sign up with valid user data$/ do
-  create_visitor
-  sign_up
+  pending
+  #create_visitor
+  #sign_up
 end
 
 When /^I sign up with an invalid email$/ do
-  create_visitor
-  @visitor = @visitor.merge(:email => "notanemail")
-  sign_up
+  pending
+  #create_visitor
+  #@visitor = @visitor.merge(:email => "notanemail")
+  #sign_up
 end
 
 When /^I sign up without a password confirmation$/ do
-  create_visitor
-  @visitor = @visitor.merge(:password_confirmation => "")
-  sign_up
+  pending
+  #create_visitor
+  #@visitor = @visitor.merge(:password_confirmation => "")
+  #sign_up
 end
 
 When /^I sign up without a password$/ do
-  create_visitor
-  @visitor = @visitor.merge(:password => "")
-  sign_up
+  pending
+  #create_visitor
+  #@visitor = @visitor.merge(:password => "")
+  #sign_up
 end
 
 When /^I sign up with a mismatched password confirmation$/ do
-  create_visitor
-  @visitor = @visitor.merge(:password_confirmation => "please123")
-  sign_up
+  pending
+  #create_visitor
+  #@visitor = @visitor.merge(:password_confirmation => "please123")
+  #sign_up
 end
 
 When /^I return to the site$/ do
@@ -121,9 +127,10 @@ When /^I sign in with a wrong password$/ do
 end
 
 When /^I edit my account details$/ do
-  click_link "Edit account"
-  fill_in "Current password", :with => @visitor[:password]
-  click_button "Update"
+  pending
+  #click_link "Edit account"
+  #fill_in "Current password", :with => @visitor[:password]
+  #click_button "Update"
 end
 
 When /^I look at the list of users$/ do
@@ -132,15 +139,17 @@ end
 
 ### THEN ###
 Then /^I should be signed in$/ do
-  page.should have_content "Logout"
-  page.should_not have_content "Sign up"
-  page.should_not have_content "Login"
+  pending
+  #page.should have_content "Logout"
+  #page.should_not have_content "Sign up"
+  #page.should_not have_content "Login"
 end
 
 Then /^I should be signed out$/ do
-  page.should have_content "Sign up"
-  page.should have_content "Login"
-  page.should_not have_content "Logout"
+  pending
+  #page.should have_content "Sign up"
+  #page.should have_content "Login"
+  #page.should_not have_content "Logout"
 end
 
 Then /^I see an unconfirmed account message$/ do
