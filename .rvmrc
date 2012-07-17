@@ -1,1 +1,1 @@
-rvm --create use default@proman2013 > /dev/null
+rvm --create use 1.9.3@proman2013 > /dev/null
