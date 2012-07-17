@@ -1,7 +1,7 @@
 require 'bundler/capistrano'
-require 'rvm/capistrano'
-set :rvm_ruby_string, '1.9.3@proman2013'
 
+set :rvm_ruby_string, '1.9.3@proman2013'
+require 'rvm/capistrano'
 
 set :application, "proman"
 set :scm, :git
