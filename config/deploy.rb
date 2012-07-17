@@ -38,4 +38,13 @@ end
 before 'deploy:setup', 'rvm:install_rvm'
 before 'deploy:setup', 'rvm:install_ruby'
 
+namespace :rvm do
+  desc 'Trust rvmrc file'
+  task :trust_rvmrc do
+    run "rvm rvmrc trust #{current_release}"
+  end
+end
+
+after "deploy:update_code", "rvm:trust_rvmrc"
+
 before "deploy:assets:precompile", "deploy:copy_in_mongoid_yaml"
