@@ -1,6 +1,6 @@
 require 'bundler/capistrano'
 require 'rvm/capistrano'
-set :rvm_ruby_string, '1.9.3@proman2012'
+set :rvm_ruby_string, '1.9.3@proman2013'
 
 
 set :application, "proman"
@@ -13,7 +13,7 @@ ssh_options[:keys] = "~/.ssh/public_key"
 
 set :user, "passenger"
 set :group, "passenger"
-set :deploy_to, "/var/www/sites/proman.swan.ac.uk"
+set :deploy_to, "/home/passenger/proman.swan.ac.uk"
 set :use_sudo, false
 
 set :deploy_via, :copy
