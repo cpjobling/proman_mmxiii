@@ -13,6 +13,7 @@ class Project
   field :students_own_project, type: Boolean, default: false
   field :student_number, type: Integer
   field :student_name, type: String
+  field :allocated, type: Boolean, default: false
 
   default_scope order_by(code: "asc")
 

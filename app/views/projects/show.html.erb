@@ -14,6 +14,21 @@
     <%= @project.research_centre_code %>
     ).
     </p>
+    <% if @project.student_number %>
+      <p>
+        <% if @project.students_own_project %>
+          This project has been defined by
+        <% else %>
+          <% if @project.allocated %>
+            This project has been allocated to
+          <% else %>
+            This project has been tentatively agreed with
+          <% end %>
+        <% end %>
+        student with id
+        <strong><%= @project.student_number %></strong>
+      </p>
+    <% end %>
   </header>
   <section class='project_desciption'>
     <p>
@@ -22,7 +37,17 @@
     <h2>
       Description
     </h2>
-      <%= raw @project.description %>
+    <%= raw @project.description %>
+    <% unless @project.associated_with.blank? %>
+      <p><strong>Associated with:</strong>
+        <%= @project.associated_with.join(', ') %>
+      </p>
+    <% end %>
+    <% unless @project.cross_disciplinary_theme.blank? %>
+      <p><strong>Cross-disciplinary research theme:</strong>
+        <%= @project.cross_disciplinary_theme %>
+      </p>
+    <% end %>
     </section>
     <footer>
       <% if session[:last_projects_page] %>

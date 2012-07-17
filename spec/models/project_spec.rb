@@ -23,6 +23,7 @@ describe Project do
   it { should respond_to(:supervisor_name)}
   it { should respond_to(:research_centre_name)}
   it { should respond_to(:research_centre_code)}
+  it { should respond_to(:allocated)}
 
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:description) }
