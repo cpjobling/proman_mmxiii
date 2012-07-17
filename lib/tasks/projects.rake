@@ -22,7 +22,7 @@ namespace :admin do
       count = 0
       puts 'ADDING PROJECTS'
       CSV.foreach(args[:csv_file],:headers => true,  :encoding => 'windows-1251:utf-8') do |row|
-        begin
+        #begin
           project = Project.new(
             title: row['Title'], 
             description: row['Description'],
@@ -67,9 +67,9 @@ namespace :admin do
           if project.students_own_project
             puts "This is a student defined project for #{project.student_name} (#{project.student_number})"
           end
-        rescue
-          puts "ERROR!"
-        end
+        #rescue
+          #puts "ERROR!"
+        #end
       end
       puts "Added #{count} new project records"
       puts "Breakdown by discipline"

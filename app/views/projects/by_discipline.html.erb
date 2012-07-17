@@ -6,17 +6,17 @@
       <th>Code</th>
       <th>Title</th>
       <th>Supervisor</th>
-      <th>Status</th>
     <tr>
   </thead>
   <tbody>
     <% @projects.each do |project| %>
-    <tr id="<%= project.code %>" class="<%= cycle("even", "odd") %>">
-      <td><%= link_to project.code, project %></td>
-      <td><%= link_to project.title, project %></td>
-      <td><%= project.supervisor.full_name %></td>
-      <td><%= project.status %></td>
-    <tr>
+      <% if project.status %>
+        <tr id="<%= project.code %>" class="<%= cycle("even", "odd") %>">
+          <td><%= link_to project.code, project %></td>
+          <td><%= link_to project.title, project %></td>
+          <td><%= project.supervisor.full_name %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
