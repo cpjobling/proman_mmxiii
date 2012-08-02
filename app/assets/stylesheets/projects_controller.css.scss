@@ -1,3 +1,17 @@
 // Place all the styles related to the ProjectsController controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.pretty th {
+  .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+  }
+  .asc { 
+    background-image: url(/assets/up_arrow.gif); 
+  }
+  .desc { 
+    background-image: url(/assets/down_arrow.gif); 
+  }
+}

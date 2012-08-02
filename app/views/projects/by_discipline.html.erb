@@ -1,12 +1,12 @@
 <h1>Projects for <%= @discipline.name %></h1>
 <%= paginate @projects %>
-<table>
+<table class="pretty">
   <thead>
     <tr>
-      <th>Code</th>
+      <th><%= sortable "pid", "Code" %></th>
       <th>Title</th>
-      <th>Supervisor</th>
-      <th>Status</th>
+      <th><%= sortable "supervisor_id", "Supervisor" %></th>
+      <th><%= sortable "status" %></th>
     <tr>
   </thead>
   <tbody>

@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
 
   def by_discipline
     @discipline = Discipline.first(conditions: { code: params[:discipline]})
-    @projects = @discipline.projects.all.page(params[:page]).per(20)
+    @projects = @discipline.projects.order_by([sort_column,sort_direction]).page(params[:page]).per(20)
   end
 
   private
