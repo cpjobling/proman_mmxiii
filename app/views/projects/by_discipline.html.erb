@@ -1,4 +1,10 @@
 <h1>Projects for <%= @discipline.name %></h1>
+<%= form_tag projects_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search titles", :name => nil %>
+  </p>
+<% end %>
 <%= paginate @projects %>
 <table class="pretty">
   <thead>
