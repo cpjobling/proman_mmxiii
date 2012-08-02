@@ -14,6 +14,10 @@
     <%= @project.research_centre_code %>
     ).
     </p>
+    <p>
+      <strong>For:</strong>
+      <%= @project.discipline.name %>
+    </p>
     <% if @project.student_number %>
       <p>
         <% if @project.students_own_project %>

@@ -20,7 +20,7 @@ class Project
   auto_increment :pid
 
   attr_accessible :code, :title, :description, :associated_with, 
-        :cross_disciplinary_theme, :special_requirements,
+        :cross_disciplinary_theme, :special_requirements, :students_own_project,
         :student_number, :student_name, :available
 
   validates_presence_of :title, :description, :discipline, :supervisor

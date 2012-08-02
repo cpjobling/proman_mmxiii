@@ -1,3 +1,3 @@
-When /^I visit the page of projects for a discipline$/ do
-  visit '/projects/by_discipline/mech'
+When /^I visit a projects by discipline page$/ do
+  pending # express the regexp above with the code you wish you had
 end

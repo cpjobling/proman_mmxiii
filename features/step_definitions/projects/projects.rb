@@ -2,9 +2,17 @@ def create_supervisor
   @supervsr ||= FactoryGirl.create(:supervisor)
 end
 
+def create_student
+  @student ||= FactoryGirl.create(:student)
+end
+
+def create_project
+  @project1 ||= FactoryGirl.create(:project, title: 'First demo project', supervisor: create_supervisor)
+end
+
 def create_two_projects
-  @project1 = FactoryGirl.create(:project, title: 'First demo project', supervisor: create_supervisor)
-  @project2 = FactoryGirl.create(:project, title: 'Second demo project', supervisor: create_supervisor, available: false)
+  create_project
+  @project2 ||= FactoryGirl.create(:project, title: 'Second demo project', supervisor: create_supervisor, available: false)
 end
 
 When /^I visit the projects page$/ do
@@ -18,7 +26,6 @@ end
 
 Then /^I should see a list of available projects$/ do
   selector = 'a[href="' + project_path(@project1) + '"]'
-  puts "Looking for: #{selector}"
   page.should have_selector selector, text: @project1.code
   page.should have_selector selector, text: @project1.title
   page.should have_content 'Available'
@@ -65,4 +72,37 @@ end
 Then /^I should see a link back to projects page for this project$/ do
   selector = 'a[href="' + projects_url + "##{@project1.code}" + '"]'
   page.should have_selector selector
+end
+
+Then /^I should see the intended discipline$/ do
+  page.should have_content @project1.discipline.name
+end
+
+Then /^I should not see any privileged project details$/ do
+  page.should_not have_content @project1.available?
+end
+
+Given /^there is a student-defined project$/ do
+  create_project
+  create_student
+  @project1.students_own_project = true
+  @project1.student_number = @student.student_number
+  @project1.student_name = @student.full_name
+  @project1.save!
+end
+
+Then /^I should see that the project has been defined by a student$/ do
+  page.should have_content 'his project has been defined by student with id'
+end
+
+Then /^I should see the student's number$/ do
+  page.should have_content @student.student_number
+end
+
+Then /^I should not see the student's name$/ do
+  page.should_not have_content @student.full_name
+end
+
+Then /^I should not see the student's email address$/ do
+  page.should_not have_content @student.email
 end

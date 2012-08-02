@@ -13,5 +13,6 @@ FactoryGirl.define do
     preferred_name 'Chuck'
     student_number 123456
     discipline
+    course 'XMECS'
   end
 end

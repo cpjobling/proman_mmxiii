@@ -31,10 +31,11 @@ namespace :admin do
           )
           
           # Supervisor
+          email = email_from_creator(row['Created By'])
           project.supervisor = Supervisor.first(conditions: 
-            { email: email_from_creator(row['Created By']) }
+            { email: email }
           )
-          
+          puts "#{email}: #{project.supervisor}"
           # Discipline
           for_discipline = row['For Discipline']
           count_project(for_discipline)
