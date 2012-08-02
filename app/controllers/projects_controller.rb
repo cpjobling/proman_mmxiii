@@ -1,6 +1,9 @@
 class ProjectsController < ApplicationController
+
+  helper_method :sort_column, :sort_direction
+
   def index
-    @projects = Project.all.page(params[:page]).per(20)
+    @projects = Project.order_by([sort_column,sort_direction]).page(params[:page]).per(20)
   end
 
   def show
@@ -12,4 +15,15 @@ class ProjectsController < ApplicationController
     @discipline = Discipline.first(conditions: { code: params[:discipline]})
     @projects = @discipline.projects.all.page(params[:page]).per(20)
   end
+
+  private
+
+    def sort_column
+      Project.column_names.include?(params[:sort]) ? params[:sort] : "pid"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction].to_sym : :asc
+    end
+
 end

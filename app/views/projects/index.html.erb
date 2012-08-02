@@ -1,14 +1,20 @@
 <h1>Projects</h1>
 
+<%= form_tag projects_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
 <%= paginate @projects %>
 <table>
   <thead>
     <tr>
-      <th>Code</th>
+      <th><%= sortable "pid", "Code" %></th>
       <th>Title</th>
-      <th>For Discipline</th>
-      <th>Supervisor</th>
-      <th>Status</th>
+      <th><%= sortable "discipline_id", "For Discipline" %></th>
+      <th><%= sortable "supervisor_id", "Supervisor" %></th>
+      <th><%= sortable "status" %></th>
     <tr>
   </thead>
   <tbody>

@@ -68,4 +68,8 @@ class Project
   def supervisor_name
     supervisor.full_name
   end
+
+  def self.column_names
+    self.fields.collect { |field| field[0] }
+  end
 end
