@@ -21,7 +21,7 @@ When /^I visit the projects page$/ do
 end
 
 Then /^I should see "(.*?)" in the page content$/ do |title|
-  page.should have_content "Projects"
+  page.should have_content title
 end
 
 Then /^I should see a list of available projects$/ do
@@ -105,4 +105,19 @@ end
 
 Then /^I should not see the student's email address$/ do
   page.should_not have_content @student.email
+end
+
+When /^I visit a projects by discipline page$/ do
+  create_project
+  visit "/projects/by_discipline/#{@project1.discipline.code}"
+end
+
+Then /^I should see the discipline name in the page title$/ do
+  page.should have_content "Projects for #{@project1.discipline.name}"
+end
+
+
+Then /^I should see a link back to discipline index for this project$/ do
+  selector = 'a[href$="' + "#{@project1.discipline.code}##{@project1.code}" + '"]'
+  page.should have_selector selector
 end
