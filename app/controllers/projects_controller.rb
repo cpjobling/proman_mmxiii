@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @projects = Project.order_by([sort_column,sort_direction]).page(params[:page]).per(20)
+    @projects = Project.search(params[:search]).order_by([sort_column,sort_direction]).page(params[:page]).per(20)
   end
 
   def show
@@ -13,7 +13,10 @@ class ProjectsController < ApplicationController
 
   def by_discipline
     @discipline = Discipline.first(conditions: { code: params[:discipline]})
-    @projects = @discipline.projects.order_by([sort_column,sort_direction]).page(params[:page]).per(20)
+    @projects = @discipline.projects
+        .search(params[:search])
+        .order_by([sort_column,sort_direction])
+        .page(params[:page]).per(20)
   end
 
   private

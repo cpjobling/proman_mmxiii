@@ -15,8 +15,6 @@ class Project
   field :student_name, type: String
   field :allocated, type: Boolean, default: false
 
-  default_scope order_by(code: "asc")
-
   auto_increment :pid
 
   attr_accessible :code, :title, :description, :associated_with, 
@@ -24,7 +22,6 @@ class Project
         :student_number, :student_name, :available
 
   validates_presence_of :title, :description, :discipline, :supervisor
-
 
   belongs_to :discipline
   belongs_to :supervisor
@@ -71,5 +68,13 @@ class Project
 
   def self.column_names
     self.fields.collect { |field| field[0] }
+  end
+
+  def self.search(search)
+    if ! search.blank?
+      where(title: /.*#{search}.*/i)
+    else
+      all
+    end
   end
 end

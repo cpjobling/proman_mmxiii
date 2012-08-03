@@ -14,5 +14,9 @@ class Discipline
   index :code, unique: true
 
   has_many :students
-  has_many :projects
+  has_many :projects do
+    def search(search)
+      Project.search(search)
+    end
+  end
 end
