@@ -54,6 +54,7 @@ GEM
     bson_ext (1.6.4)
       bson (~> 1.6.4)
     builder (3.0.0)
+    cancan (1.6.8)
     capistrano (2.11.2)
       highline
       net-scp (>= 1.0.0)
@@ -258,6 +259,7 @@ DEPENDENCIES
   RedCloth
   activeadmin-mongoid
   bson_ext (>= 1.6.2)
+  cancan
   capistrano (~> 2.11.2)
   capybara (= 1.1.2)
   coffee-rails (~> 3.2.1)
