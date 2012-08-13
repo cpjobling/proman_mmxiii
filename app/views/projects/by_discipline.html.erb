@@ -1,7 +1,9 @@
 <h1>Projects for <%= @discipline.name %></h1>
 
-<%#= render 'projects/search_form' %>
-
+<%= form_tag projects_path + "/by_discipline/#{@discipline.code}", 
+             :method => 'get' do %>
+  <%= render 'projects/search_form' %>
+<% end %>
 <%= paginate @projects %>
 <table class="pretty">
   <thead>

@@ -1,6 +1,8 @@
 <h1>Projects</h1>
 
-<%= render 'projects/search_form' %>
+<%= form_tag projects_path, :method => 'get' do %>
+  <%= render 'projects/search_form' %>
+<% end %>
 
 <%= paginate @projects %>
 <table class="pretty">
