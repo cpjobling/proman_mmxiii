@@ -16,7 +16,12 @@ class Discipline
   has_many :students
   has_many :projects do
     def search(search)
-      Project.search(search)
+      # TODO: find an elegant way to do this without duplicading code
+      if ! search.blank?
+        where(title: /.*#{search}.*/i)
+      else
+        all
+      end
     end
   end
 end
