@@ -131,6 +131,7 @@ describe User do
     it { should respond_to :has_role? }
     it { should respond_to :has_any_role? }
     it { should respond_to :has_all_roles? }
+    it { should respond_to :is? }
 
     it "should respond to valid roles" do
       User.valid_roles.class.should == Array
@@ -150,11 +151,55 @@ describe User do
       @user.guest?.should == true
     end
 
-    it "should be possible to add roles"
+    it "should be possible to add valid roles" do
+      User.valid_roles.each do |role|
+        @user.roles << role
+        @user.should have_role role
+      end
+    end
 
-    it "should be possible to delete roles"
+    it "should not be possible to add invalid roles" do
+      @user.roles << :invalid_role
+      @user.should_not have_role :invalid_role
+    end
 
-    it "should be possible for a user to have multiple roles"
+    it "should be possible to delete roles" do
+      User.valid_roles.each do |role|
+        @user.roles << role
+        @user.should have_role role
+        @user.roles.delete role
+        @user.should_not have_role role
+      end
+    end
+
+    it "should be possible for a user to have multiple roles" do
+      my_roles = []
+      User.valid_roles.each do |role|
+        @user.roles << role
+        my_roles << role
+        @user.should have_roles my_roles
+      end
+    end
+
+    it "should be possible to query a role" do
+      User.valid_roles.each do |role|
+        @user.roles << role
+        @user.should have_role role
+      end
+    end
+
+    it "should be possible to test a subset of roles" do
+      test_roles = [:coordinator, :supervisor]
+      User.valid_roles.each do |role|
+        @user.roles << role
+      end
+      @user.has_any_role?(test_roles[0]).should be_true
+      @user.has_any_role?(test_roles[1]).should be_true
+      @user.has_any_role?(test_roles).should be_true
+      @user.roles.delete :supervisor
+      @user.has_any_role?(test_roles).should be_true
+      @user.roles.delete :coordinator
+      @user.has_any_role?(test_roles).should be_false
+    end
   end
-
 end

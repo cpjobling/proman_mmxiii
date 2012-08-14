@@ -26,7 +26,6 @@ describe ProjectsController do
 
   describe "GET 'project#show[:id]'" do
     before(:each) do
-      puts "@project=#{@project}"
       get :show, id: @project
     end
     it "returns http success" do

@@ -51,8 +51,8 @@ class User
 
   # RoleModel
   include RoleModel
-  field :roles_mask, :type => Integer, :default => 0
   attr_accessible :roles_mask
+  field :roles_mask, :type => Integer, :default => 0
   roles_attribute :roles_mask
 
 

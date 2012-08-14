@@ -1,6 +1,10 @@
 class Student < Person
   include Mongoid::Document
 
+  before_create do |student|
+    student.roles << :student
+  end
+
 
   field :student_number, :type => Integer
   field :course, type: String

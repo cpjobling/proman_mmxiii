@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Supervisor do
-  let(:supervisor) { FactoryGirl.build(:supervisor) }
+  let(:supervisor) { FactoryGirl.create(:supervisor) }
 
   subject { supervisor }
 
@@ -22,5 +22,52 @@ describe Supervisor do
   its(:research_centre)      { should == supervisor.research_centre }
   its(:research_centre_name) { should == supervisor.research_centre.name }
   its(:research_centre_code) { should == supervisor.research_centre.code }
+
+  it { should_not be_guest }
+
+  it "has supervisor role" do
+    supervisor.should have_role :supervisor
+    supervisor.is?(:supervisor).should be_true
+  end
+
+  it "does not have student role" do
+    supervisor.should_not have_role :student
+  end
+
+  it "does not have admin role" do
+    supervisor.should_not have_role :admin
+  end
+
+  it "does not have coordinator role" do
+    supervisor.should_not have_role :coordinator
+  end
+  
+  describe "coordinator" do
+    before do
+      supervisor.roles << :coordinator
+      supervisor.save!
+    end
+
+    it "is not a guest user" do
+      supervisor.should_not be be_true
+    end
+    
+    it "has coordinator role" do
+      supervisor.should have_role :coordinator
+    end
+
+    it "has supervisor role" do
+      supervisor.should have_role :supervisor
+    end
+    
+    it "does not have student role" do
+      supervisor.should_not have_role :student
+    end
+
+    it "does not have admin role" do
+      supervisor.should_not have_role :admin
+    end
+  
+  end
 
 end

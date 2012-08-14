@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Student do
 
-  let(:student) { FactoryGirl.build(:student) }
+  let(:student) { FactoryGirl.create(:student) }
 
   subject { student }
   it { should respond_to(:student_number)}
@@ -23,4 +23,22 @@ describe Student do
   it { should belong_to(:discipline) }
 
   it { should have_index_for(:student_number).with_options(unique: true) }
+
+  it { should_not be_guest }
+
+  it "has student role" do
+    student.should have_role :student
+  end
+
+  it "does not have supervisor role" do
+    student.should_not have_role :supervisor
+  end
+
+  it "does not have admin role" do
+    student.should_not have_role :admin
+  end
+
+  it "does not have coordinator role" do
+    student.should_not have_role :coordinator
+  end
 end

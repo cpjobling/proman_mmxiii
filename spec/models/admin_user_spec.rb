@@ -1,5 +1,5 @@
 require 'spec_helper'
 
 describe AdminUser do
-  it "has asmin role"
+  it "has admin role"
 end

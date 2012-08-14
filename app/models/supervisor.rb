@@ -1,6 +1,10 @@
 class Supervisor < Person
   include Mongoid::Document
 
+  before_create do |supervisor| 
+    supervisor.roles << :supervisor
+  end
+
   field :staff_number, type: Integer
   field :bbusername, type: String
 
