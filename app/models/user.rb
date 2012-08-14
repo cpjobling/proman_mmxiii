@@ -1,3 +1,5 @@
+require 'role_model'
+
 class User
   include Mongoid::Document
   # Include default devise modules. Others available are:
@@ -15,6 +17,7 @@ class User
 
   validates_uniqueness_of :email, :case_sensitive => false
   attr_accessible :email, :password, :password_confirmation, :remember_me
+
 
   ## Recoverable
   field :reset_password_token,   :type => String
@@ -45,4 +48,17 @@ class User
   # field :authentication_token, :type => String
 
   index :email, unique: true
+
+  # RoleModel
+  include RoleModel
+  field :roles_mask, :type => Integer, :default => 0
+  attr_accessible :roles_mask
+  roles_attribute :roles_mask
+
+
+  roles :admin, :coordinator, :supervisor, :student
+
+  def guest?
+    roles_mask == 0
+  end
 end

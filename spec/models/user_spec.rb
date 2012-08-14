@@ -119,4 +119,42 @@ describe User do
     it { should have_index_for(:email).with_options(unique: true) }
   end
 
+  describe "Role model" do
+    before(:each) do
+      @user = User.create!(@attr)
+    end
+
+    subject { @user }
+
+    it { should respond_to :guest? }    
+    it { should respond_to :roles }
+    it { should respond_to :has_role? }
+    it { should respond_to :has_any_role? }
+    it { should respond_to :has_all_roles? }
+
+    it "should respond to valid roles" do
+      User.valid_roles.class.should == Array
+    end
+
+    it "should support expected application roles" do
+      [:admin, :coordinator, :supervisor, :student].each do |role|
+        User.valid_roles.should include(role)
+      end
+    end
+
+    it "should have no roles on create" do
+      @user.roles.should be_blank
+    end
+
+    it "should have guest role on create" do
+      @user.guest?.should == true
+    end
+
+    it "should be possible to add roles"
+
+    it "should be possible to delete roles"
+
+    it "should be possible for a user to have multiple roles"
+  end
+
 end
