@@ -1,5 +1,6 @@
 
 require 'csv'
+require 'mongoid'
 
 # We normalise emails by making them lower case. Also as our email domain 
 # may be abbreviated by staff and students as `swan.ac.uk` for consistency
@@ -41,6 +42,20 @@ namespace :admin do
         end
       end
       puts "Added #{count} new staff records"
+    end
+
+    desc "Add supervisor role"
+    task :add_supervisor_role => :environment do |t, args|
+      supervisors = Supervisor.all
+      supervisors.each do |supervisor|
+        begin
+          supervisor.roles << :supervisor
+          supervisor.save!
+          puts "Added supervisor role to #{supervisor.full_name}'s record"
+        rescue
+          puts "WARNING: suervisor role not added to #{supervisor.full_name}'s record"
+        end
+      end
     end
   end
 end
