@@ -1,4 +1,6 @@
 require 'spec_helper'
+require "cancan/matchers"
+
 
 describe User do
 
@@ -126,7 +128,8 @@ describe User do
 
     subject { @user }
 
-    it { should respond_to :guest? }    
+    it { should respond_to :guest? }  
+    it { should respond_to :admin? }  
     it { should respond_to :roles }
     it { should respond_to :has_role? }
     it { should respond_to :has_any_role? }
@@ -200,6 +203,18 @@ describe User do
       @user.has_any_role?(test_roles).should be_true
       @user.roles.delete :coordinator
       @user.has_any_role?(test_roles).should be_false
+    end
+
+    describe "admin role" do
+      before(:each) do 
+        @user.roles << :admin
+        @user.save!
+        @admin = @user
+      end
+
+      subject { @admin }
+
+      its(:admin?) { should be_true }
     end
   end
 end

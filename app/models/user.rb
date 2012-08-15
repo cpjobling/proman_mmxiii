@@ -55,10 +55,13 @@ class User
   field :roles_mask, :type => Integer, :default => 0
   roles_attribute :roles_mask
 
-
   roles :admin, :coordinator, :supervisor, :student
 
   def guest?
     roles_mask == 0
+  end
+
+  def admin?
+    has_role? :admin
   end
 end

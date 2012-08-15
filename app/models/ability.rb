@@ -6,6 +6,8 @@ class Ability
 
     if user.guest?
         can :read, Project
+    elsif user.admin?
+        can :manage, :all
     else
 
     end
