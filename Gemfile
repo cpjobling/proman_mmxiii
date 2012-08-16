@@ -55,6 +55,7 @@ group :development, :test do
   gem "factory_girl_rails", ">= 3.3.0"
   gem "capistrano", '~> 2.11.2'
   gem "rvm-capistrano"
+  gem 'sextant'
 end
 
 # Test gems on Macintosh OS X
