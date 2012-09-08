@@ -76,5 +76,18 @@ namespace :admin do
       puts "Breakdown by discipline"
       puts $DISCIPLINE_COUNTER.to_yaml
     end
+
+    desc "Download Projects as CSV file"
+    task :download_as_csv => [:environment] do |t|
+      projects = Project.asc(:pid)
+      header = ["Code","Title","Available?","Student number","Own project?","Allocated?","Discipline","Supervisor","Supervisor's email","Research Centre","RC code"].to_csv
+      puts header
+      projects.each do |project|
+        row = [project.code,project.title,project.available?,project.student_number,project.students_own_project, 
+             project.allocated?,project.discipline.name,project.supervisor.full_name,project.supervisor_email,
+             project.research_centre_name,project.research_centre_code].to_csv
+        puts row
+      end
+    end
   end
 end

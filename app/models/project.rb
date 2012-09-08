@@ -34,6 +34,10 @@ class Project
     available
   end
 
+  def allocated?
+    allocated
+  end
+
   def research_centre
     return supervisor.research_centre
   end
