@@ -115,4 +115,9 @@ class Project
     update_attributes!(available: true)
     logger.info "Project #{code} has been made available"
   end
+
+  def change_discipline(code)
+    return if code.blank?
+    return if Discipline.for_code(code).nil?
+  end
 end

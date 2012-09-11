@@ -24,4 +24,14 @@ class Discipline
       end
     end
   end
+
+  class << self
+    def for_code(code)
+      where(code: code).first
+    end
+
+    def like(name)
+      where(name: /.*#{name}.*/i)
+    end
+  end
 end

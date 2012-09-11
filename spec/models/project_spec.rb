@@ -164,3 +164,42 @@ describe "project available flag" do
   end
 
 end
+
+describe "project#change_discipline" do
+  let (:old_discipline) { Discipline.for_code('pde') }
+  let (:new_discipline)   { Discipline.for_code('pdt') }
+  let (:project) { FactoryGirl.build(:project, discipline: old_discipline )}
+
+  subject { project }
+
+  its(:discipline) { should == old_discipline }
+  
+  it "should do nothing if code is blank or nil" do
+    project.change_discipline('')
+    project.discipline.should == old_discipline
+    project.change_discipline(nil)
+    project.discipline.should == old_discipline
+  end
+
+  it "should do nothing if no discipline exists for code" do
+    project.change_discipline('rubbish')
+    project.discipline.should == old_discipline
+  end
+
+  it "should change discipline" do
+    project.change_discipline('pdt')
+    project.discipline.should == new_discipline
+  end
+
+  it "should not change discipline if allocated" do
+    project.allocated = true
+    project.change_discipline('pdt')
+    project.discipline.should == old_discipline
+  end
+
+  it "should not change discipline if students_own project" do
+    students_own_project = true
+    project.change_discipline('pdt')
+    project.discipline.should == old_discipline
+  end
+end
