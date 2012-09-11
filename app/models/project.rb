@@ -92,8 +92,27 @@ class Project
     logger.info "Allocated project #{code} to student #{student_number}"
   end
 
+  def deallocate
+    unless students_own_project
+      update_attributes!(allocated: false, student_number: nil, student_name: nil)
+    else
+      # Shouldn't remove student data from student-defined projects
+      update_attributes!(allocated: false)
+    end
+  end
+
   def allocated_to
     # TODO: return student!
     { name: student_name, number: student_number }
+  end
+
+  def make_unavailable
+    update_attributes!(available: false)
+    logger.info "Project #{code} has been made unavailable"
+  end
+
+  def make_available
+    update_attributes!(available: true)
+    logger.info "Project #{code} has been made available"
   end
 end

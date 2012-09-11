@@ -24,6 +24,11 @@ describe Project do
   it { should respond_to(:research_centre_name)}
   it { should respond_to(:research_centre_code)}
   it { should respond_to(:allocated?)}
+  it { should respond_to(:allocate_to)}
+  it { should respond_to(:allocated_to)}
+  it { should respond_to(:deallocate)}
+  it { should respond_to(:make_unavailable)}
+  it { should respond_to(:make_available)}
 
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:description) }
@@ -61,4 +66,101 @@ describe "project allocation" do
     its (:allocated_to) { should == {number: 123456, name: "Other, Anthony Norman"} }
     it { should_not be_available }
     its (:status) { should == "Allocated to 123456" }
+end
+
+describe "project deallocation" do
+    let(:allocated_project) { FactoryGirl.create(:project, 
+                      allocated: true, student_number: 123456, student_name: "Other, Anthony Norman") }
+    let(:own_project) { FactoryGirl.create(:project, 
+                      allocated: true, student_number: 123456, student_name: "Other, Anthony Norman", 
+                      students_own_project: true) }
+
+    subject { allocated_project }
+
+    it { should be_allocated }
+    its (:allocated_to) { should == {number: 123456, name: "Other, Anthony Norman"} }
+    it { should_not be_available }
+    its (:status) { should == "Allocated to 123456" }
+
+    describe "deallocation" do
+      before(:each) do
+        allocated_project.deallocate
+      end
+      it "should be deallocated" do
+        allocated_project.allocated?.should be_false
+      end
+      it "should not have a student number" do
+        allocated_project.student_number.should be_nil
+      end
+      it "should not have a student name" do
+        allocated_project.student_name.should be_nil
+      end
+      it "should be available" do
+        allocated_project.available?.should be_true
+      end
+      it "should have 'available' status" do
+        allocated_project.status.should == "Available"
+      end
+    end
+
+    describe "deallocation of a students own project" do
+      before(:each) do
+        own_project.deallocate
+      end
+      it "should still be students_own_project" do
+        own_project.students_own_project?.should be_true
+      end
+      it "should be deallocated" do
+        own_project.allocated?.should be_false
+      end
+      it "should still have a student number" do
+        own_project.student_number.should == 123456
+      end
+      it "should still have a student name" do
+        own_project.student_name.should == "Other, Anthony Norman"
+      end
+      it "should be available" do
+        own_project.available?.should be_true
+      end
+      it "should have 'available' status" do
+        own_project.status.should == "Available"
+      end
+    end
+
+end
+
+describe "project available flag" do
+
+  let(:available_project) { FactoryGirl.create(:project) }
+  let(:unavailable_project) { FactoryGirl.create(:project, available: false) }
+
+  subject { available_project }
+
+  it {should be_available }
+  its(:available) { should be_true }
+
+  describe "available_project#make_unavailable" do
+
+    before(:each) do
+      available_project.make_unavailable
+    end
+
+    its(:available) { should be_false }
+    it { should_not be_available }
+    its(:status) { should == "Not available" }
+  end
+
+  describe "unavailable_project#make_available" do
+
+    before(:each) do
+      unavailable_project.make_available
+    end
+
+    it "should be available" do
+      unavailable_project.available.should be_true
+      unavailable_project.should be_available
+      unavailable_project.status.should == "Available"
+    end
+  end
+
 end
