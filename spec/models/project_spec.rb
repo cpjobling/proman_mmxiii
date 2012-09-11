@@ -23,7 +23,7 @@ describe Project do
   it { should respond_to(:supervisor_name)}
   it { should respond_to(:research_centre_name)}
   it { should respond_to(:research_centre_code)}
-  it { should respond_to(:allocated)}
+  it { should respond_to(:allocated?)}
 
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:description) }
@@ -43,4 +43,22 @@ describe Project do
   its(:research_centre)       { should == project.supervisor.research_centre }
   its(:research_centre_name)  { should == project.supervisor.research_centre_name }
   its(:research_centre_code)  { should == project.supervisor.research_centre_code }
+  its(:status)                { should == "Available" }
+
+end
+
+describe "project allocation" do
+    let(:project) { FactoryGirl.create(:project) }
+
+    subject { project }
+    
+    before(:each) do
+      project.allocate_to(123456,"Other, Anthony Norman")
+      project.reload
+    end
+
+    it{ should be_allocated }
+    its (:allocated_to) { should == {number: 123456, name: "Other, Anthony Norman"} }
+    it { should_not be_available }
+    its (:status) { should == "Allocated to 123456" }
 end

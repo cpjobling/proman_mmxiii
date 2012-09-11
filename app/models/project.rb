@@ -19,7 +19,7 @@ class Project
 
   attr_accessible :code, :title, :description, :associated_with, 
         :cross_disciplinary_theme, :special_requirements, :students_own_project,
-        :student_number, :student_name, :available
+        :student_number, :student_name, :available, :allocated
 
   validates_presence_of :title, :description, :discipline, :supervisor
 
@@ -31,7 +31,7 @@ class Project
   end
 
   def available?
-    available
+    available && ! allocated
   end
 
   def allocated?
@@ -55,8 +55,12 @@ class Project
   end
 
   def status
-    if available? 
-      return "Available"
+    if available
+      if allocated
+        return "Allocated to #{student_number}"
+      else
+        return "Available"
+      end
     else
       return "Not available"
     end
@@ -80,5 +84,16 @@ class Project
     else
       all
     end
+  end
+
+  def allocate_to(number, name = "")
+    # TODO: use real student record with discipline check
+    update_attributes!(allocated: true, student_number: number, student_name: name)
+    logger.info "Allocated project #{code} to student #{student_number}"
+  end
+
+  def allocated_to
+    # TODO: return student!
+    { name: student_name, number: student_number }
   end
 end
