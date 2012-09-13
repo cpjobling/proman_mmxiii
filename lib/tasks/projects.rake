@@ -8,6 +8,11 @@ def email_from_creator created_by
   return "#{names[1]}#{names[0]}".downcase + "@swansea.ac.uk"
 end
 
+def allocate(p, pid, student_number, student_name)
+  puts "Allocating project #{pid} #{p.title} to student #{student_number}"
+  p.allocate_to(student_number, student_name)
+end
+
 $DISCIPLINE_COUNTER = Hash.new(0)
 
 def count_project(for_discipline)
@@ -105,16 +110,17 @@ namespace :admin do
           puts "Proceed anyway? [y/n]"
           answer = STDIN.gets.chomp
           if answer =~ /[yY]/
-            puts "Allocating project #{pid} to student #{proposed_allocation[:student_number]}"
-            p.allocate_to(proposed_allocation[:student_number], proposed_allocation[:student_name])
+            allocate(p, pid, proposed_allocation[:student_number], proposed_allocation[:student_name])
             count += 1
           else
             proposed_allocation[:message] = "project #{pid} not allocated to #{proposed_allocation[:student]} due to discipline mis-match"
             problems.push { proposed_allocation }
             next
           end
+        else
+          allocate(p, pid, proposed_allocation[:student_number], proposed_allocation[:student_name])
+          count += 1
         end
-        
       end
       puts "BATCH ALLOCATION: #{count} projects allocated successfully"
       if problems
