@@ -120,4 +120,8 @@ class Project
     return if code.blank?
     return if Discipline.for_code(code).nil?
   end
+
+  def self.by_id(pid)
+    Project.where(pid: pid).first
+  end
 end

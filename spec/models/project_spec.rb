@@ -50,6 +50,10 @@ describe Project do
   its(:research_centre_code)  { should == project.supervisor.research_centre_code }
   its(:status)                { should == "Available" }
 
+  it "should implement Project.by_id" do
+    Project.by_id(project.pid).should eq(project)
+  end
+
 end
 
 describe "project allocation" do
@@ -203,3 +207,5 @@ describe "project#change_discipline" do
     project.discipline.should == old_discipline
   end
 end
+
+
