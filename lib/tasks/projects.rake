@@ -18,7 +18,7 @@ namespace :admin do
   namespace :projects do
     desc "Populate database with project records from CSV file"
     task :add_from_csv, [:csv_file] => [:environment] do |t, args|
-      args.with_defaults(:csv_file => '$HOME/Dropbox/projects/2012-2013/data/csv/projects.csv')
+      args.with_defaults(:csv_file => ENV['HOME'] + '/Dropbox/projects/2012-2013/data/csv/projects.csv')
       count = 0
       puts 'ADDING PROJECTS'
       CSV.foreach(args[:csv_file],:headers => true,  :encoding => 'windows-1251:utf-8') do |row|
@@ -75,6 +75,52 @@ namespace :admin do
       puts "Added #{count} new project records"
       puts "Breakdown by discipline"
       puts $DISCIPLINE_COUNTER.to_yaml
+    end
+
+
+    desc "Batch allocate projects from csv file: need student number, (optional) student name, and pid"
+    task :batch_allocate, [:csv_file] => [:environment] do |t, args|
+      args.with_defaults(:csv_file => ENV['HOME'] + '/Dropbox/projects/2012-2013/data/csv/project-allocations.csv')
+      count = 0
+      problems = []
+      puts 'BATCH ALLOCATING PROJECTS'
+      CSV.foreach(args[:csv_file],:headers => true,  :encoding => 'windows-1251:utf-8') do |row|
+        proposed_allocation = {
+          student_number: row["Stu Code"],
+          pid:            row["Allocation"],
+          discipline:     row["Discipline"],
+          student_name:   row["Name"],
+          message:        nil
+        }
+        pid = proposed_allocation[:pid]
+        p = Project.where(pid: pid).first
+        if p.nil? 
+          puts "WARNING: project pid not found ... skipping"
+          proposed_allocation[:message] = "project #{pid} not found"
+          problems.push { proposed_allocation }
+          next
+        end
+        if p.discipline.name != proposed_allocation[:discipline]
+          puts "WARNING: student's discipline '#{proposed_allocation[:discipline]}' does not match project #{pid} discipline '#{p.discipline.name}'"
+          puts "Proceed anyway? [y/n]"
+          answer = STDIN.gets.chomp
+          if answer =~ /[yY]/
+            puts "Allocating project #{pid} to student #{proposed_allocation[:student_number]}"
+            p.allocate_to(proposed_allocation[:student_number], proposed_allocation[:student_name])
+            count += 1
+          else
+            proposed_allocation[:message] = "project #{pid} not allocated to #{proposed_allocation[:student]} due to discipline mis-match"
+            problems.push { proposed_allocation }
+            next
+          end
+        end
+        
+      end
+      puts "BATCH ALLOCATION: #{count} projects allocated successfully"
+      if problems
+        puts "At end of allocation the following records had problems please review"
+        puts "Please review these problems:\n" + problems.to_yaml
+      end
     end
 
     desc "Download Projects as CSV file"
