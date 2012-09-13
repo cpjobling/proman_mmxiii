@@ -117,8 +117,12 @@ class Project
   end
 
   def change_discipline(code)
-    return if code.blank?
-    return if Discipline.for_code(code).nil?
+    return if code.blank? || self.allocated? || self.students_own_project?
+    old_discipline = self.discipline
+    new_discipline = Discipline.for_code(code)
+    return if new_discipline.nil?
+    self.discipline = new_discipline
+    logger.info "Discipline for project #{code} has been changed from #{old_discipline.name} to #{discipline.name}"
   end
 
   def self.by_id(pid)
