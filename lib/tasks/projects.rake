@@ -136,7 +136,7 @@ namespace :admin do
       puts header
       projects.each do |project|
         row = [project.code,project.title,project.available?,project.student_number,project.students_own_project, 
-             project.allocated?,project.discipline.name,project.supervisor.full_name,project.supervisor_email,
+             project.allocated?,project.discipline.name,project.supervisor.sortable_name,project.supervisor_email,
              project.research_centre_name,project.research_centre_code].to_csv
         puts row
       end

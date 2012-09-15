@@ -44,6 +44,7 @@ describe Person do
       it { should be_valid }
       its(:full_name)   { should == "Mr Charles Philip Windsor" }
       its(:sortable_name) { should == "Windsor, Charles Philip" }
+      its(:sortable_name_and_title) { should == "Windsor, Mr Charles Philip" }
     end
   
     context "three forenames" do
@@ -52,6 +53,7 @@ describe Person do
       its(:forename3)     { should == "Arthur George" }
       its(:full_name)     { should == "Mr Charles Philip Arthur George Windsor" }
       its(:sortable_name) { should == "Windsor, Charles Philip Arthur George" }
+      its(:sortable_name_and_title) { should == "Windsor, Mr Charles Philip Arthur George" }
     end
   end
   

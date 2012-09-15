@@ -31,6 +31,10 @@ class Person < User
     "#{surname}, #{forename1} #{forename2} #{forename3} ".squeeze(" ").strip
   end
 
+  def sortable_name_and_title
+    "#{surname}, #{title} #{forename1} #{forename2} #{forename3} ".squeeze(" ").strip
+  end
+
   def formal_address
     "#{title} #{surname}"
   end

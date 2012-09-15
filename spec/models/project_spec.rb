@@ -21,6 +21,8 @@ describe Project do
   it { should respond_to(:status)}
   it { should respond_to(:supervisor_email)}
   it { should respond_to(:supervisor_name)}
+  it { should respond_to(:supervisor_sortable_name)}
+  it { should respond_to(:supervisor_sortable_name_and_title)}
   it { should respond_to(:research_centre_name)}
   it { should respond_to(:research_centre_code)}
   it { should respond_to(:allocated?)}
