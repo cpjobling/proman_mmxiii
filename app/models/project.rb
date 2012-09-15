@@ -26,8 +26,8 @@ class Project
   belongs_to :discipline
   belongs_to :supervisor
 
-  scope :available, where(available: true, allocated: false)
-  scope :allocated, where(allocated: true)
+  scope :unassigned, where(:allocated.ne => true, available: true)
+  scope :assigned, where(allocated: true)
 
   def students_own_project?
     students_own_project
@@ -62,7 +62,11 @@ class Project
       if allocated
         return "Allocated to #{student_number}"
       else
-        return "Available"
+        if students_own_project
+          return "Defined by #{student_number}"
+        else
+          return "Available"
+        end
       end
     else
       return "Not available"
