@@ -14,6 +14,9 @@ PromanMmxxiii::Application.routes.draw do
     collection do
       get 'by_discipline/:discipline', action: 'by_discipline'
     end
+    collection do
+      get 'allocated', action: 'allocated'
+    end
   end
 
   # The priority is based upon order of creation:

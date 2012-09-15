@@ -14,7 +14,14 @@ class ProjectsController < ApplicationController
   def by_discipline
     @discipline = Discipline.first(conditions: { code: params[:discipline]})
     @projects = @discipline.projects
+        .available
         .search(params[:search])
+        .order_by([sort_column,sort_direction])
+        .page(params[:page]).per(20)
+  end
+
+  def allocated
+   @projects = Project.allocated
         .order_by([sort_column,sort_direction])
         .page(params[:page]).per(20)
   end

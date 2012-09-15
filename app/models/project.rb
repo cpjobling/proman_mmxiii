@@ -27,6 +27,7 @@ class Project
   belongs_to :supervisor
 
   scope :available, where(available: true, allocated: false)
+  scope :allocated, where(allocated: true)
 
   def students_own_project?
     students_own_project
@@ -74,6 +75,14 @@ class Project
 
   def supervisor_name
     supervisor.full_name
+  end
+
+  def supervisor_sortable_name
+    supervisor.sortable_name
+  end
+
+   def supervisor_sortable_name_and_title
+    supervisor.sortable_name_and_title
   end
 
   def self.column_names
