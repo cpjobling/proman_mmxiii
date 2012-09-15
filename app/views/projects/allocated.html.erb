@@ -1,0 +1,33 @@
+<h1>Allocated Projects</h1>
+<p><em>Correct as of</em>: <%= Time.now %></p>
+<%#= form_tag projects_path + "/by_discipline/#{@discipline.code}", :method => 'get' do %>
+  <%#= render 'projects/search_form' %>
+<%# end %>
+<%= paginate @projects %>
+<table class="pretty">
+  <thead>
+    <tr>
+      <th><%= sortable "pid", "Code" %></th>
+      <th>Title</th>
+      <th><%= sortable "student_number", "Student Number" %></th>
+      <th>Own Project?</th>
+      <th>Discipline</th>
+      <th><%= sortable "supervisor_id", "Supervisor" %></th>
+      <th>Research Centre</th>
+    <tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr id="<%= project.code %>" class="<%= cycle("even", "odd") %>">
+        <td><%= link_to project.code, project %></td>
+        <td><%= link_to project.title, project %></td>
+        <td><%= project.student_number %></td>
+        <td><%= yesno(project.students_own_project) %></td>
+        <td><%= project.discipline.name %></td>
+        <td><%= project.supervisor.sortable_name_and_title %></td>
+        <td><%= project.research_centre_code %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @projects %>
