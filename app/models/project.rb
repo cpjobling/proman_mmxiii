@@ -26,6 +26,8 @@ class Project
   belongs_to :discipline
   belongs_to :supervisor
 
+  scope :available, where(available: true, allocated: false)
+
   def students_own_project?
     students_own_project
   end
@@ -122,6 +124,7 @@ class Project
     new_discipline = Discipline.for_code(code)
     return if new_discipline.nil?
     self.discipline = new_discipline
+    self.discipline.save!
     logger.info "Discipline for project #{code} has been changed from #{old_discipline.name} to #{discipline.name}"
   end
 
