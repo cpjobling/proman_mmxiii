@@ -17,6 +17,9 @@ PromanMmxxiii::Application.routes.draw do
     collection do
       get 'allocated', action: 'allocated'
     end
+    collection do
+      get 'unavailable', action: 'unavailable'
+    end
   end
 
   # The priority is based upon order of creation:

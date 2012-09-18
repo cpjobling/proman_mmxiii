@@ -1,0 +1,30 @@
+<h1>Unavailable Projects</h1>
+
+<%#= form_tag projects_path, :method => 'get' do %>
+  <%#= render 'projects/search_form' %>
+<%# end %>
+
+<%= paginate @projects %>
+<table class="pretty">
+  <thead>
+    <tr>
+      <th><%= sortable "pid", "Code" %></th>
+      <th>Title</th>
+      <th><%= sortable "discipline_id", "For Discipline" %></th>
+      <th><%= sortable "supervisor_id", "Supervisor" %></th>
+      <th><%= sortable "status" %></th>
+    <tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |project| %>
+    <tr id="<%= project.code %>" class="<%= cycle("even", "odd") %>">
+      <td><%= link_to project.code, project %></td>
+      <td><%= link_to project.title, project %></td>
+      <td><%= project.discipline.name %></td>
+      <td><%= project.supervisor.full_name %></td>
+      <td><%= project.status %></td>
+    <tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @projects %>

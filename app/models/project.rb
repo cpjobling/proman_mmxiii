@@ -28,6 +28,7 @@ class Project
 
   scope :unassigned, where(:allocated.ne => true, available: true)
   scope :assigned, where(allocated: true)
+  scope :unavailable, where(:available.ne => true)
 
   def students_own_project?
     students_own_project

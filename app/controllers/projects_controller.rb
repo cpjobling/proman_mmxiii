@@ -26,6 +26,10 @@ class ProjectsController < ApplicationController
         .page(params[:page]).per(20)
   end
 
+  def unavailable
+    @projects = Project.unavailable.order_by([sort_column,sort_direction]).page(params[:page]).per(20)
+  end
+  
   private
 
     def sort_column

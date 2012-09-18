@@ -1,13 +1,16 @@
 Code,For Discipline
+aero,Aerospace Engineering
 aero_mp,Aerospace Engineering (Materials and Propulsion Theme)
 aero_space,Aerospace Engineering (Space Theme)
 aero_sc,Aerospace Engineering (Structures and Computation)
 civil,Civil Engineering
+elec,Electrical and Electronic Engineering (combined)
 eee,Electronic and Electrical Engineering
 ecs,Electronics with Computing Science
 nano,Electronics with Nanotechnology
 materials,Materials Science and Engineering
 mech,Mechanical Engineering
+mech_pd,Mechanical Engineering and Product Design'
 medical,Medical Engineering
 mcit,Mobile Communications and Internet Technology
 pde,Product Design Engineering
@@ -16,3 +19,4 @@ ses,Sports Science
 sm,Sports Materials
 telecoms,Telecommunications Engineering
 env,Environmental Engineering
+erasmus,"Visiting Erasmus Student"
