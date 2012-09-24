@@ -83,7 +83,7 @@ describe Person do
   end
   
   describe "full_name" do
-    its(:full_name) {should == "Mr Charles Philip Arthur George Windsor" }
+    its(:full_name) { should == "Mr Charles Philip Arthur George Windsor" }
   end
   
   describe "sortable_name" do
