@@ -10,7 +10,7 @@ namespace :admin do
     task :tutor_csv => [:environment] do |t|
       projects = Project.assigned
       projects.each do |p|
-        row = ["#{p.supervisor.sortable_informal_name_and_title}'s Students",p.student_number].to_csv
+        row = [p.student_number,"#{p.supervisor.sortable_informal_name_and_title}'s Students"].to_csv
         puts row
       end
     end

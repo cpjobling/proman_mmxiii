@@ -141,5 +141,17 @@ namespace :admin do
         puts row
       end
     end
+
+    desc "Download tutor list as CSV file"
+    task :tutor_csv => [:environment] do |t|
+      projects = Project.assigned
+      header = ["Discipline","Student","Student No","Supervisor"].to_csv
+      puts header
+      projects.each do |project|
+        row = [project.discipline.name,project.student_name,project.student_number,project.supervisor.full_name].to_csv
+        puts row
+      end
+    end
+
   end
 end
