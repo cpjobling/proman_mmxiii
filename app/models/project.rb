@@ -104,7 +104,7 @@ class Project
 
   def allocate_to(number, name = "")
     # TODO: use real student record with discipline check
-    update_attributes!(allocated: true, student_number: number, student_name: name)
+    update_attributes!(allocated: true, student_number: number, student_name: name, available: true)
     logger.info "Allocated project #{code} to student #{student_number}"
   end
 

@@ -128,8 +128,8 @@ describe "project deallocation" do
       it "should be available" do
         own_project.available?.should be_true
       end
-      it "should have 'available' status" do
-        own_project.status.should == "Available"
+      it "should have 'Defined by #' status" do
+        own_project.status.should == "Defined by 123456"
       end
     end
 

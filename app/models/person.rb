@@ -28,14 +28,26 @@ class Person < User
   end
 
   def sortable_name
-    "#{surname}, #{forename1} #{forename2} #{forename3} ".squeeze(" ").strip
+    "#{surname}, #{forename1} #{forename2} #{forename3}".squeeze(" ").strip
   end
 
   def sortable_name_and_title
-    "#{surname}, #{title} #{forename1} #{forename2} #{forename3} ".squeeze(" ").strip
+    "#{surname}, #{title} #{forename1} #{forename2} #{forename3}".squeeze(" ").strip
   end
 
   def formal_address
-    "#{title} #{surname}"
+    "#{title} #{surname}".squeeze(" ").strip
+  end
+
+  def informal_name
+    "#{name} #{surname}".squeeze(" ").strip
+  end
+
+  def sortable_informal_name
+     "#{surname}, #{name}".squeeze(" ").strip
+  end
+
+  def sortable_informal_name_and_title
+     "#{surname}, #{title} #{name}".squeeze(" ").strip
   end
 end

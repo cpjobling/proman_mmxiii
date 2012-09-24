@@ -20,6 +20,10 @@ describe Person do
   it { should respond_to(:full_name)}
   it { should respond_to(:sortable_name)}
   it { should respond_to(:formal_address)}
+  it { should respond_to(:informal_name)}
+  it { should respond_to(:sortable_informal_name)}
+  it { should respond_to(:sortable_name_and_title)}
+  it { should respond_to(:sortable_informal_name_and_title)}
 
   it { should be_valid }
 
@@ -58,17 +62,23 @@ describe Person do
   end
   
   
-  describe "preferred name used in pereference to first forename" do
+  describe "preferred name used in preference to first forename" do
     context "blank preferred preferred_name" do
       before { charlie.preferred_name = " " }
       it { should be_valid }
-      its (:preferred_name) { should be_blank }
-      its (:name)           { should == "Charles" }
+      its (:preferred_name)                    { should be_blank }
+      its (:name)                              { should == "Charles" }
+      its (:informal_name)                     { should == "Charles Windsor"}
+      its (:sortable_informal_name)            { should == "Windsor, Charles"}
+      its (:sortable_informal_name_and_title)  { should == "Windsor, Mr Charles"}
     end
 
     context "non-blank preferred name" do
      it { should be_valid }
-      its(:name) { :should == "Chuck" }
+      its (:name)                              { should == "Chuck" }
+      its (:informal_name)                     { should == "Chuck Windsor"}
+      its (:sortable_informal_name)            { should == "Windsor, Chuck"}
+      its (:sortable_informal_name_and_title)  { should == "Windsor, Mr Chuck"}
     end
   end
   
