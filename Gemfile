@@ -56,6 +56,7 @@ group :development, :test do
   gem "capistrano", '~> 2.11.2'
   gem "rvm-capistrano"
   gem 'sextant'
+  gem 'pry'
 end
 
 # Test gems on Macintosh OS X
