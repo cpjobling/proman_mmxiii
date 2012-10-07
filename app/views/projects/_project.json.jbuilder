@@ -1,0 +1,1 @@
+json.(project, :_id, :created_at, :updated_at, :title, :description, :associated_with, :cross_disciplinary_theme, :special_requirements, :available, :students_own_project, :student_number, :student_name, :allocated, :pid, :discipline_id, :supervisor_id)

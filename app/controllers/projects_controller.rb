@@ -22,11 +22,18 @@ class ProjectsController < ApplicationController
 
   def by_discipline
     @discipline = Discipline.first(conditions: { code: params[:discipline]})
-    @projects = Project.search(params[:search]).where(discipline_id: @discipline._id)
-        .unassigned
-        .order_by([sort_column,sort_direction])
-        .page(params[:page]).per(20)
-        
+    respond_to do |format|
+      format.html do
+        @projects = Project.search(params[:search]).where(discipline_id: @discipline._id)
+            .unassigned
+            .order_by([sort_column,sort_direction])
+            .page(params[:page]).per(20)
+      end
+      format.json do
+        @projects = Project.where(discipline_id: @discipline._id).unassigned
+        #render json: @projects
+      end
+    end
   end
 
   def allocated
