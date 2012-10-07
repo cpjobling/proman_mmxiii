@@ -1,3 +1,3 @@
 
-json.partial! project
+json.partial! @project
 
