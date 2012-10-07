@@ -152,8 +152,8 @@ class Project
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
-      header = ["Code","Title","Status","Available?","Student number",
-                "Own project?","Allocated?","Discipline","Supervisor",
+      header = ["Code","Title","Status","Available?","Student number","Student name","Discipline",
+                "Own project?","Allocated?","Supervisor",
                 "Supervisor's email","Research Centre","RC code"]
       csv << header
       all.each do |project|
@@ -163,9 +163,10 @@ class Project
           project.status,
           project.available,
           project.student_number,
+          project.student_name,
+          project.discipline_name,
           project.students_own_project,
           project.allocated,
-          project.discipline_name,
           project.supervisor_sortable_name,
           project.supervisor_email,
           project.research_centre_name,
