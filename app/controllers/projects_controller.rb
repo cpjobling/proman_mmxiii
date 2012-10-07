@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
       end
       format.csv do
         @projects = Project.asc(:pid)
-        render text: @projects.to_csv
+        send_data @projects.to_csv
       end
     end
   end

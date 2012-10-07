@@ -158,7 +158,7 @@ class Project
       csv << header
       all.each do |project|
         csv << [
-          "p-2012-#{project.pid}",
+          "#{PREFIX}#{'%03d' % project.pid}",
           project.title,
           project.status,
           project.available,
