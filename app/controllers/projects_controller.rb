@@ -30,9 +30,14 @@ class ProjectsController < ApplicationController
   end
 
   def allocated
-   @projects = Project.assigned
-        .order_by([sort_column,sort_direction])
-        .page(params[:page]).per(20)
+   respond_to do |format|
+      format.html do
+        @projects = Project.assigned
+            .order_by([sort_column,sort_direction])
+            .page(params[:page]).per(20)
+      end
+      format.csv { send_data Project.assigned_to_csv }
+    end
   end
 
   def unavailable

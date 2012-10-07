@@ -186,4 +186,37 @@ class Project
       end
     end
   end
+
+  def self.assigned_to_csv(options={})
+    projects = assigned
+    CSV.generate(options) do |csv|
+      desired_headings = [
+        'PID',
+        'Project Title (If Known)',
+        'Supervisor',
+        'Supervisor Email',
+        'Student Name',
+        'Number',
+        'Discipline',
+        'Email',
+        'Own Project?',
+        'RC Code'
+      ]
+      csv << desired_headings
+      projects.each do |p|
+        csv << [
+                "#{PREFIX}#{'%03d' % p.pid}",
+                p.title,
+                p.supervisor.sortable_name,
+                p.supervisor.email,
+                p.student_name,
+                p.student_number,
+                p.discipline.name,
+                p.student_number.to_s + '@swansea.ac.uk',
+                p.students_own_project,
+                p.supervisor.research_centre.code
+              ]
+      end
+    end
+  end
 end
