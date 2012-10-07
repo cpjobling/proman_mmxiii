@@ -20,6 +20,9 @@ PromanMmxxiii::Application.routes.draw do
     collection do
       get 'unavailable', action: 'unavailable'
     end
+    collection do
+      get 'tutors', action: 'tutors'
+    end
   end
 
   # The priority is based upon order of creation:

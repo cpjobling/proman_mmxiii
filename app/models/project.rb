@@ -175,4 +175,15 @@ class Project
       end
     end
   end
+
+  def self.tutor_list_as_csv(options = {})
+    projects = assigned
+    CSV.generate(options) do |csv|
+      header = ["Discipline","Student","Student No","Supervisor"]
+      csv << header
+      projects.each do |project|
+        csv << [project.discipline.name,project.student_name,project.student_number,project.supervisor.full_name]
+      end
+    end
+  end
 end

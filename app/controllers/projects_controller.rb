@@ -38,6 +38,12 @@ class ProjectsController < ApplicationController
   def unavailable
     @projects = Project.unavailable.order_by([sort_column,sort_direction]).page(params[:page]).per(20)
   end
+
+  def tutors
+    respond_to do |format|
+      format.csv { send_data Project.tutor_list_as_csv }
+    end
+  end
   
   private
 
