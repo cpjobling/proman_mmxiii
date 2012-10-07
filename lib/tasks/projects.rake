@@ -132,14 +132,7 @@ namespace :admin do
     desc "Download Projects as CSV file"
     task :download_as_csv => [:environment] do |t|
       projects = Project.asc(:pid)
-      header = ["Code","Title","Status","Available?","Student number","Own project?","Allocated?","Discipline","Supervisor","Supervisor's email","Research Centre","RC code"].to_csv
-      puts header
-      projects.each do |project|
-        row = [project.code,project.title,project.status,project.available,project.student_number,project.students_own_project, 
-             project.allocated,project.discipline.name,project.supervisor.sortable_name,project.supervisor_email,
-             project.research_centre_name,project.research_centre_code].to_csv
-        puts row
-      end
+      puts projects.to_csv
     end
 
     desc "Download tutor list as CSV file"

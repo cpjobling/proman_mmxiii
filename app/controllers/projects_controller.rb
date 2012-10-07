@@ -3,7 +3,16 @@ class ProjectsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @projects = Project.search(params[:search]).order_by([sort_column,sort_direction]).page(params[:page]).per(20)
+    respond_to do |format|
+      format.html do 
+        @projects = Project.search(params[:search]).order_by([sort_column,sort_direction]).page(params[:page]).per(20)
+        render 'projects/index'
+      end
+      format.csv do
+        @projects = Project.asc(:pid)
+        render text: @projects.to_csv
+      end
+    end
   end
 
   def show

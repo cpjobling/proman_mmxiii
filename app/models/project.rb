@@ -58,6 +58,10 @@ class Project
     return "#{PREFIX}#{'%03d' % pid}"
   end
 
+  def discipline_name
+    discipline.name
+  end
+
   def status
     if available
       if allocated
@@ -144,5 +148,30 @@ class Project
 
   def self.by_id(pid)
     Project.where(pid: pid).first
+  end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      header = ["Code","Title","Status","Available?","Student number",
+                "Own project?","Allocated?","Discipline","Supervisor",
+                "Supervisor's email","Research Centre","RC code"]
+      csv << header
+      all.each do |project|
+        csv << [
+          "p-2012-#{project.pid}",
+          project.title,
+          project.status,
+          project.available,
+          project.student_number,
+          project.students_own_project,
+          project.allocated,
+          project.discipline_name,
+          project.supervisor_sortable_name,
+          project.supervisor_email,
+          project.research_centre_name,
+          project.research_centre_code
+        ]
+      end
+    end
   end
 end
