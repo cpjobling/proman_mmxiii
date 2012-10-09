@@ -187,10 +187,16 @@ class Project
   def self.tutor_list_as_csv(options = {})
     projects = assigned
     CSV.generate(options) do |csv|
-      header = ["Discipline","Student","Student No","Supervisor","Login"]
+      header = ["Student No","Login","Supervisor","Student","Discipline"]
       csv << header
       projects.each do |project|
-        csv << [project.discipline.name,project.student_name,project.student_number,project.supervisor_full_name,project.supervisor_login]
+        csv << [
+                project.student_number,
+                project.supervisor_login,
+                project.supervisor_full_name,
+                project.student_name,
+                project.discipline_name
+               ]
       end
     end
   end
@@ -215,14 +221,14 @@ class Project
         csv << [
                 p.code,
                 p.title,
-                p.supervisor.sortable_name,
-                p.supervisor.email,
+                p.supervisor_sortable_name,
+                p.supervisor_email,
                 p.student_name,
                 p.student_number,
-                p.discipline.name,
+                p.discipline_name,
                 p.student_number.to_s + '@swansea.ac.uk',
                 p.students_own_project,
-                p.supervisor.research_centre.code
+                p.research_centre_code
               ]
       end
     end
