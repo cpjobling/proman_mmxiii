@@ -21,6 +21,7 @@ describe Project do
   it { should respond_to(:status)}
   it { should respond_to(:supervisor_email)}
   it { should respond_to(:supervisor_name)}
+  it { should respond_to(:supervisor_full_name)}
   it { should respond_to(:supervisor_sortable_name)}
   it { should respond_to(:supervisor_sortable_name_and_title)}
   it { should respond_to(:research_centre_name)}
@@ -31,6 +32,7 @@ describe Project do
   it { should respond_to(:deallocate)}
   it { should respond_to(:make_unavailable)}
   it { should respond_to(:make_available)}
+  it { should respond_to(:supervisor_login)}
 
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:description) }
@@ -47,6 +49,10 @@ describe Project do
   its(:supervisor)            { should == project.supervisor }
   its(:supervisor_email)      { should == project.supervisor.email }
   its(:supervisor_name)       { should == project.supervisor.full_name }
+  its(:supervisor_full_name)   { should == project.supervisor.full_name }
+  its(:superviosr_sortable_name) { should = project.supervisor.sortable_name }
+  its(:supervisor_sortable_name_and_title) { should == project.supervisor.sortable_name_and_title }
+  its(:supervisor_login)      { should == project.supervisor.login }
   its(:research_centre)       { should == project.supervisor.research_centre }
   its(:research_centre_name)  { should == project.supervisor.research_centre_name }
   its(:research_centre_code)  { should == project.supervisor.research_centre_code }

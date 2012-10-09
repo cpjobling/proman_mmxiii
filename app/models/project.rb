@@ -31,6 +31,7 @@ class Project
   scope :unavailable, where(:available.ne => true)
   scope :selectable, where(available: true, :allocated.ne => true)
 
+  
   def students_own_project?
     students_own_project
   end
@@ -83,16 +84,22 @@ class Project
     supervisor.email
   end
 
-  def supervisor_name
+  def supervisor_full_name
     supervisor.full_name
   end
+
+  alias :supervisor_name :supervisor_full_name
 
   def supervisor_sortable_name
     supervisor.sortable_name
   end
 
-   def supervisor_sortable_name_and_title
+  def supervisor_sortable_name_and_title
     supervisor.sortable_name_and_title
+  end
+
+  def supervisor_login
+    supervisor.login
   end
 
   def self.column_names
@@ -159,7 +166,7 @@ class Project
       csv << header
       all.each do |project|
         csv << [
-          "#{PREFIX}#{'%03d' % project.pid}",
+          project.code,
           project.title,
           project.status,
           project.available,
@@ -180,10 +187,10 @@ class Project
   def self.tutor_list_as_csv(options = {})
     projects = assigned
     CSV.generate(options) do |csv|
-      header = ["Discipline","Student","Student No","Supervisor"]
+      header = ["Discipline","Student","Student No","Supervisor","Login"]
       csv << header
       projects.each do |project|
-        csv << [project.discipline.name,project.student_name,project.student_number,project.supervisor.full_name]
+        csv << [project.discipline.name,project.student_name,project.student_number,project.supervisor_full_name,project.supervisor_login]
       end
     end
   end
@@ -206,7 +213,7 @@ class Project
       csv << desired_headings
       projects.each do |p|
         csv << [
-                "#{PREFIX}#{'%03d' % p.pid}",
+                p.code,
                 p.title,
                 p.supervisor.sortable_name,
                 p.supervisor.email,

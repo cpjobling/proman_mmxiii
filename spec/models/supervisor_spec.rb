@@ -9,6 +9,7 @@ describe Supervisor do
   it { should respond_to(:bbusername)}
   it { should respond_to(:research_centre_name) }
   it { should respond_to(:research_centre_code)}
+  it { should respond_to(:login)}
 
   it { should validate_presence_of(:staff_number) }
   it { should validate_presence_of(:bbusername) }
@@ -22,6 +23,7 @@ describe Supervisor do
   its(:research_centre)      { should == supervisor.research_centre }
   its(:research_centre_name) { should == supervisor.research_centre.name }
   its(:research_centre_code) { should == supervisor.research_centre.code }
+  its(:login)                { should == supervisor.email.gsub(/@.*$/, "") }
 
   it { should_not be_guest }
 

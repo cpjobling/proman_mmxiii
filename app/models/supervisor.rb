@@ -27,4 +27,8 @@ class Supervisor < Person
   def research_centre_code
     research_centre.code
   end
+
+  def login
+    @login ||= email.gsub(/@.*$/, "")
+  end
 end
