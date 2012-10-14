@@ -2,6 +2,8 @@ class ProjectsController < ApplicationController
 
   helper_method :sort_column, :sort_direction
 
+  before_filter :find_project, :only => [:show]
+
   def index
     respond_to do |format|
       format.html do 
@@ -16,7 +18,6 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
     session[:last_projects_page] = request.env['HTTP_REFERER'] || projects_url
   end
 
@@ -65,6 +66,13 @@ class ProjectsController < ApplicationController
 
     def sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction].to_sym : :asc
+    end
+
+    def find_project
+      @project = Project.find(params[:id])
+    rescue Mongoid::Errors::DocumentNotFound
+      flash[:alert] = "The project you were looking for could not be found."
+      redirect_to projects_path
     end
 
 end

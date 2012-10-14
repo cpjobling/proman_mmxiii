@@ -46,4 +46,11 @@ describe ProjectsController do
     end
   end
 
+  it "displays an error for a missing project" do
+    get :show, :id => BSON::ObjectId.new
+    response.should redirect_to(projects_path)
+    message = "The project you were looking for could not be found."
+    flash[:alert].should == message
+  end
+
 end
