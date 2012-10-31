@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-PromanMmxxiii::Application.load_tasks
+PromanMmxiii::Application.load_tasks

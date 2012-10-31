@@ -1,4 +1,4 @@
-PromanMmxxiii::Application.routes.draw do
+PromanMmxiii::Application.routes.draw do
 
   ActiveAdmin.routes(self)
 
