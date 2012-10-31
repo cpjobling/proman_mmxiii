@@ -6,6 +6,9 @@ class Api::V1::BaseController < ActionController::Base
   private
     def authenticate_user
       @current_user = User.where(authentication_token: params[:token]).first
+      unless @current_user
+        respond_with({ error: "Token is invalid." })
+      end
     end
 
     def current_user

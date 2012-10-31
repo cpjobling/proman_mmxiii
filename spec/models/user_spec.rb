@@ -135,6 +135,7 @@ describe User do
     it { should respond_to :has_any_role? }
     it { should respond_to :has_all_roles? }
     it { should respond_to :is? }
+    it { should respond_to :authentication_token }
 
     it "should respond to valid roles" do
       User.valid_roles.class.should == Array

@@ -52,7 +52,7 @@ group :development, :test do
   gem 'rspec-rails', ">= 2.10.1"
   gem 'guard-rspec', '0.5.5'
   gem 'guard-cucumber'
-  gem "factory_girl_rails", ">= 3.3.0"
+  gem "factory_girl_rails", "~> 4.0"
   gem "capistrano", '~> 2.11.2'
   gem "rvm-capistrano"
   gem 'sextant'
@@ -72,6 +72,7 @@ group :test do
   gem 'guard-spork', '0.3.2'
   gem 'spork', '0.9.0'
   gem 'forgery'
+  gem 'rack-test'
 end
 
 # Test gems on Linux

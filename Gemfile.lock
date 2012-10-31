@@ -101,10 +101,10 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    factory_girl (3.5.0)
+    factory_girl (4.1.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (3.5.0)
-      factory_girl (~> 3.5.0)
+    factory_girl_rails (4.1.0)
+      factory_girl (~> 4.1.0)
       railties (>= 3.0.0)
     fastercsv (1.5.5)
     ffi (1.0.11)
@@ -287,7 +287,7 @@ DEPENDENCIES
   database_cleaner (>= 0.7.2)
   devise (>= 2.1.0)
   email_spec (>= 1.2.1)
-  factory_girl_rails (>= 3.3.0)
+  factory_girl_rails (~> 4.0)
   forgery
   growl (= 1.0.3)
   guard-cucumber
@@ -301,6 +301,7 @@ DEPENDENCIES
   mongoid-rspec (>= 1.4.4)
   mongoid_auto_increment (>= 0.0.8)
   pry
+  rack-test
   rails (= 3.2.6)
   rake (>= 0.9.2.2)
   rb-fsevent (= 0.4.3.1)

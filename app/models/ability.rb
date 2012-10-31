@@ -8,8 +8,14 @@ class Ability
         can :read, Project
     elsif user.admin?
         can :manage, :all
+    elsif user.has_role? :coordinator
+        can :manage, Project
+    elsif user.has_role? :supervisor
+        # can manage own projects
+    elsif user.has_role? :student
+        can :read, Project
     else
-
+        # default rolesd 
     end
     # Define abilities for the passed in user here. For example:
     #

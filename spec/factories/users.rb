@@ -8,7 +8,7 @@ FactoryGirl.define do
     password_confirmation 'please'
     # required if the Devise Confirmable module is used
     confirmed_at Time.now
-    factory :admin do
+    factory :admin_user do
       roles [ :admin ]
     end
   end

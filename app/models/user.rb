@@ -6,7 +6,8 @@ class User
   # :token_authenticatable
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, # :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable,
+         :token_authenticatable
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -45,9 +46,11 @@ class User
   # field :locked_at,       :type => Time
 
   ## Token authenticatable
-  # field :authentication_token, :type => String
+  field :authentication_token, :type => String
 
   index :email, unique: true
+
+  before_save :ensure_authentication_token
 
   # RoleModel
   include RoleModel
