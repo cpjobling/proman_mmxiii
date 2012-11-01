@@ -1,5 +1,9 @@
 PromanMmxiii::Application.routes.draw do
 
+  get "static_pages/home"
+
+  get "static_pages/help"
+
   ActiveAdmin.routes(self)
 
   root :to => "projects#index"
