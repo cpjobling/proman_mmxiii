@@ -3,9 +3,8 @@ require 'role_model'
 class User
   include Mongoid::Document
   # Include default devise modules. Others available are:
-  # :token_authenticatable
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, # :registerable,
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
          :token_authenticatable
 

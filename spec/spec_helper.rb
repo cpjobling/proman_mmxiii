@@ -21,6 +21,10 @@ Spork.prefork do
   RSpec.configure do |config|
     config.include(EmailSpec::Helpers)
     config.include(EmailSpec::Matchers)
+
+    config.before do
+      ActionMailer::Base.deliveries.clear
+    end
     # ## Mock Framework
     #
     # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -52,6 +56,7 @@ Spork.prefork do
     config.before(:each) do
       DatabaseCleaner.clean
     end
+
   end
 end
 
