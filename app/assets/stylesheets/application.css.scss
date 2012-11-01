@@ -10,9 +10,10 @@
  *
  *= require_self
  *= require bootstrap_and_overrides
+ *= require custom
  */
  
- .content {
+ .row {
    background-color: #eee;
    padding: 20px;
    margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
