@@ -6,6 +6,6 @@ module ApiHelper
   end
 end
 
-Rspec.configure do |c|
+RSpec.configure do |c|
   c.include ApiHelper, type: :api
 end

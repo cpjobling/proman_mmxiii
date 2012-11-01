@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width" initial-scale="1.0">
-  <title>Proman 2013 | <%= content_for?(:title) ? yield(:title) : "Proman 2013" %></title>
+  <title><%= full_title(yield(:title)) %></title>
   <meta name="description" content="">
   <meta name="author" content="Dr Chris P. Jobling">
   <%= stylesheet_link_tag    "application", :media => "all" %>
