@@ -14,4 +14,8 @@ module ApplicationHelper
       return "No"
     end
   end
+
+  def logo
+    raw "Proman<em><sup>mmxiii</sup></em>"
+  end
 end
