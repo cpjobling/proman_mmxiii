@@ -1,11 +1,13 @@
-/* universal */
+@import "bootstrap";
 
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
+$lightGray: #000;
+$suBlue: #3B6B82;
 
 body {
-  background-color: #3B6B82;
+  background-color: $suBlue;
 }
 
 .row {
@@ -19,6 +21,8 @@ body {
    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);  
    box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }
+
+/* universal */
 
 footer {
   padding-top: 20px;
@@ -42,10 +46,9 @@ textarea {
 
 .center {
   text-align: center;
-}
-
-.center h1 {
-  margin-bottom: 10px;
+  h1 {
+    margin-bottom: 10px;
+  }
 }
 
 /* typography */
@@ -67,7 +70,7 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #999;
+  color: $grayLight;
 }
 
 p {
@@ -81,47 +84,42 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 2.1em;
-  color: #000;
+  color: $grayLight;
   text-transform: capitalize;
   font-variant: small-caps;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
+  &#logo:hover {
+    color: $grayLight;
+    text-decoration: none;
+  }
 }
 
-#logo:hover {
-  color: #000;
-  text-decoration: none;
-}
+
 
 /* footer */
 
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  color: #fff;
+  color: $white;
+  a {
+    color: $grayLighter;
+    &:hover { 
+      color: $grayLight;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
 }
-
-footer a {
-  color: #fff;
-}  
-
-footer a:hover { 
-  color: #222;
-}
-
-footer small {
-  float: left;
-}
-
-footer ul {
-  float: right;
-  list-style: none;
-}
-
-footer ul li {
-  float: left;
-  margin-left: 10px;
-}
-
