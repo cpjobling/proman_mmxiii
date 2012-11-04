@@ -1,9 +1,9 @@
 <%= link_to logo, root_path, class: 'brand', id: 'logo' %>
 <div class="nav-collapse">
   <ul class="nav pull-right">
-    <li><%= link_to "Home",     '#' %></li>
+    <li><%= link_to "Home",     root_path %></li>
     <li><%= link_to "Projects", projects_path %></li>
-    <li><%= link_to "Help",     '#' %></li>
+    <li><%= link_to "Help",     help_path %></li>
     <% if user_signed_in? %>
       <li>
         <%= link_to('Logout', destroy_user_session_path, method: 'delete') %>
