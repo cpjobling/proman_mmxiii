@@ -1,5 +1,3 @@
-<% provide(:title, 'About Proman') %>
-<h1>About Proman</h1>
-<p>
-  Some blurb about Proman.
-</p>
+<% title('About Proman') %>
+<% slogan = quotation_generator("You and I ought not to die before we have explained ourselves to each other", :author => "John Adams", :born => 1735, :died => 1826)  %>
+<%= render(partial: "shared/about") %>

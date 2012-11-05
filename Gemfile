@@ -47,6 +47,7 @@ gem "rake", ">= 0.9.2.2"
 gem "RedCloth"
 gem "kaminari"
 gem "bootstrap-sass"
+gem "haml"
 
 
 group :development, :test do

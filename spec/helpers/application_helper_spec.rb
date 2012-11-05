@@ -30,4 +30,10 @@ describe ApplicationHelper do
       logo.should eql(raw "Proman<em><sup>mmxiii</sup></em>")
     end
   end
+
+  describe "proman" do
+    it "should return Proman" do
+      proman.should eql("Proman")
+    end
+  end
 end

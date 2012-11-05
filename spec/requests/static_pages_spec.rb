@@ -6,7 +6,7 @@ describe "StaticPages" do
   subject { page }
 
   shared_examples_for "all static pages" do
-    it { should have_selector('h1',    text: heading) }
+    it { should have_selector('h2',    text: heading) }
     it { should have_selector('title', text: full_title(page_title)) }
   end
   
@@ -39,6 +39,20 @@ describe "StaticPages" do
     it_should_behave_like "all static pages"
   end
 
+  describe "Terms of Service page" do
+    before { visit tos_path }
+    let(:heading) { 'Terms of Service' }
+    let(:page_title) { heading }
+    it_should_behave_like "all static pages"
+  end
+
+  describe "License" do
+    before { visit license_path }
+    let(:heading) { 'Software License' }
+    let(:page_title) { heading }
+    it_should_behave_like "all static pages"
+  end
+
   it "should have the right links on the layout" do
       visit root_path
       click_link "About"
@@ -47,6 +61,10 @@ describe "StaticPages" do
       page.should have_selector 'title', text: full_title('Help')
       click_link "Contact"
       page.should have_selector 'title', text: full_title('Contact Us')
+      click_link "Terms of Service"
+      page.should have_selector 'title', text: full_title('Terms of Service')
+      click_link "License"
+      page.should have_selector 'title', text: full_title('Software License')
       click_link "Home"
       click_link "Sign up now!"
       page.should have_selector 'title', text: full_title('Sign up')

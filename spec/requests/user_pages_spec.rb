@@ -9,7 +9,7 @@ describe "User pages" do
 
     page!
 
-    it { should have_selector('h1',    text: 'Sign up') }
+    it { should have_selector('h2',    text: 'Sign up') }
     it { should have_selector('title', text: full_title('Sign up')) }
   end
 end
