@@ -74,7 +74,7 @@ describe "project allocation" do
       project.reload
     end
 
-    it{ should be_allocated }
+    it { should be_allocated }
     its (:allocated_to) { should == {number: 123456, name: "Other, Anthony Norman"} }
     it { should_not be_available }
     its (:status) { should == "Allocated to 123456" }

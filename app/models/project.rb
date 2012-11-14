@@ -44,25 +44,13 @@ class Project
     allocated
   end
 
-  def research_centre
-    return supervisor.research_centre
-  end
-
-  def research_centre_name
-    supervisor.research_centre_name
-  end
-
-  def research_centre_code
-    supervisor.research_centre_code
-  end
+  delegate :research_centre, :research_centre_name, :research_centre_code, to: :supervisor
 
   def code
     return "#{PREFIX}#{'%03d' % pid}"
   end
 
-  def discipline_name
-    discipline.name
-  end
+  delegate :name, to: :discipline, prefix: true
 
   def status
     if available
@@ -80,27 +68,8 @@ class Project
     end
   end
 
-  def supervisor_email
-    supervisor.email
-  end
-
-  def supervisor_full_name
-    supervisor.full_name
-  end
-
+  delegate :email, :sortable_name, :full_name, :sortable_name_and_title, :login, to: :supervisor, prefix: true
   alias :supervisor_name :supervisor_full_name
-
-  def supervisor_sortable_name
-    supervisor.sortable_name
-  end
-
-  def supervisor_sortable_name_and_title
-    supervisor.sortable_name_and_title
-  end
-
-  def supervisor_login
-    supervisor.login
-  end
 
   def self.column_names
     self.fields.collect { |field| field[0] }
